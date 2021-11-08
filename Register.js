@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button, View, Text, TextInput, StyleSheet, Linking } from 'react-native';
+import Login from './Login';
 
 function Register({ navigation }) {
     const [username, setUsername] = React.useState('');
@@ -23,18 +24,28 @@ function Register({ navigation }) {
                 style={styles.input}
                 placeholder="password"
             />
-            <Text style={{color: 'blue'}}
-                onPress={() => Linking.openURL('http://google.com')}>
-                By signing up, you are agree to our terms of Service and Privacy policy
-            </Text>
+            <View style={styles.termLink}>
+                <Text>By signing up, you are agree to our </Text>
+                <Text style={{color: 'blue'}}
+                    onPress={() => Linking.openURL('http://google.com')}>Terms of Service and Privacy policy</Text>
+            </View>
+            
             <Button
-                title="Go to Login"
+                title="Register my account"
                 onPress={() => navigation.navigate({
                     name: 'Login',
                     params: { username: username },
                     merge: true,
                   })
                 } />
+            <View style={styles.loginLink}>
+                <Text>Already hava an account? </Text>
+                <Text style={{color: 'blue'}}
+                        onPress={() => navigation.navigate({
+                            name: 'Login',
+                        })
+                        }>Login</Text>
+            </View>
         </View>
     );
 }
@@ -50,6 +61,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     label: {
+
+    },
+    loginLink: {
+
+    },
+    termLink: {
 
     },
 })

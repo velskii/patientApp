@@ -40,23 +40,13 @@ function Home({ navigation, route }) {
                         })} />
                     </>) 
                 : (<>
-                    <Text style={styles.label}>Please register or login first.</Text>
-            
+                    <Text style={styles.label}>Dont have an account. Please login first.</Text>
                     
                     <View style={styles.btn_group}>
-                        <View style={styles.btn_left}>
-                            <TouchableOpacity
-                            onPress={() => navigation.navigate('Login')}>
-                                <Text>Login</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.btn_right}>
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('Register')}
-                                >
-                                <Text>Register</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity
+                        onPress={() => navigation.navigate('Login')}>
+                            <Text>Login</Text>
+                        </TouchableOpacity>
                     </View></>)
             }
         </View>
@@ -106,27 +96,12 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     btn_group: {
-        flex: 1, 
-        flexDirection: 'row', 
-        justifyContent:'space-around',
         padding: 15,
         margin: 15,
-    },
-    btn_left: {
-        width: 100,
-        height: 50, 
-        backgroundColor: 'steelblue',
         textAlign: 'center',
-        fontSize:20,
-        margin: 50,
-    },
-    btn_right: {
         width: 100,
-        height: 50, 
-        backgroundColor: 'steelblue',
-        fontSize:20,
-        textAlign: 'center',
-        margin: 50,
+        height: 50,
+        backgroundColor: 'steelblue'
     },
 })
 

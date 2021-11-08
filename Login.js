@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button, View, Text, StyleSheet, TextInput } from 'react-native';
+import Register from './Register';
 
 function Login({ route, navigation }) {
     const [username, setUsername] = React.useState('');
@@ -25,6 +26,14 @@ function Login({ route, navigation }) {
                     merge: true,
                   })
         } />
+        <View style={styles.registerLink}>
+          <Text>Do not hava an account yet? </Text>
+          <Text style={{color: 'blue'}}
+                  onPress={() => navigation.navigate({
+                    name: 'Register',
+                  })
+                }>Register</Text>
+        </View>
       </View>
     );
   }
@@ -40,6 +49,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     label: {
+
+    },
+    registerLink: {
 
     },
 })
