@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text, StyleSheet } from 'react-native';
+import { Button, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -8,7 +8,7 @@ import Login from './Login';
 import AddPatient from './AddPatient';
 
 
-function HomeScreen({ navigation, route }) {
+function Home({ navigation, route }) {
     React.useEffect(() => {
         if (route.params?.username) {
             console.log("username is "+route.params?.username)
@@ -27,9 +27,11 @@ function HomeScreen({ navigation, route }) {
             {
                 route.params?.username.length > 0 
                 ? (<>
-                    <Text>Home Screen</Text>
-                    <Text style={styles.label}>UserId: {route.params?.userId}</Text>
-                    <Text style={styles.label}>Username: {route.params?.username}</Text>
+                    <View style={styles.label}>
+                        <Text>Home Screen</Text>
+                        <Text>UserId: {route.params?.userId}</Text>
+                        <Text>Username: {route.params?.username}</Text>
+                    </View>
                     <Button
                         title="AddPatient"
                         onPress={() => navigation.navigate('AddPatient', {
@@ -38,15 +40,24 @@ function HomeScreen({ navigation, route }) {
                         })} />
                     </>) 
                 : (<>
-                    <Text>Please register or login first.</Text>
-                    <Button
-                        style={styles.btn_left}
-                        title="Login"
-                        onPress={() => navigation.navigate('Login')} />
-                    <Button
-                    style={styles.btn_right}
-                        title="Register"
-                        onPress={() => navigation.navigate('Register')} /></>)
+                    <Text style={styles.label}>Please register or login first.</Text>
+            
+                    
+                    <View style={styles.btn_group}>
+                        <View style={styles.btn_left}>
+                            <TouchableOpacity
+                            onPress={() => navigation.navigate('Login')}>
+                                <Text>Login</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.btn_right}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Register')}
+                                >
+                                <Text>Register</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View></>)
             }
         </View>
         );
@@ -62,7 +73,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
         name="Home"
-        component={HomeScreen} 
+        component={Home} 
         options={{ title: 'Home' }}/>
         <Stack.Screen 
         name="Register" 
@@ -86,20 +97,36 @@ const styles = StyleSheet.create({
     container: { 
         flex: 1, 
         alignItems: 'center', 
-        justifyContent: 'center' 
     },
     input:{
         padding: 10, 
         backgroundColor: 'white'
     },
     label: {
-        margin: 10,
+        marginTop: 20,
+    },
+    btn_group: {
+        flex: 1, 
+        flexDirection: 'row', 
+        justifyContent:'space-around',
+        padding: 15,
+        margin: 15,
     },
     btn_left: {
-        flex: 1,
+        width: 100,
+        height: 50, 
+        backgroundColor: 'steelblue',
+        textAlign: 'center',
+        fontSize:20,
+        margin: 50,
     },
     btn_right: {
-        flex: 1,
+        width: 100,
+        height: 50, 
+        backgroundColor: 'steelblue',
+        fontSize:20,
+        textAlign: 'center',
+        margin: 50,
     },
 })
 

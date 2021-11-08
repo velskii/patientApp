@@ -4,8 +4,8 @@ import { Button, View, Text, StyleSheet, TextInput } from 'react-native';
 function AddPatient({ route, navigation }) {
     const { patientId, otherParam } = route.params;
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Login Screen</Text>
+      <View style={styles.container}>
+        <Text>AddPatient Screen</Text>
         <Text>patientId: {JSON.stringify(patientId)}</Text>
         <Text>otherParam: {JSON.stringify(otherParam)}</Text>
         
