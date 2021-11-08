@@ -22,7 +22,7 @@ function HomeScreen({ navigation, route }) {
     }, [route.params?.username, route.params?.userId, route.params?.patientId]);
   
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.container}>
             
             {
                 route.params?.username.length > 0 
