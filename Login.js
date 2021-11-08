@@ -1,22 +1,47 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
+import { Button, View, Text, StyleSheet, TextInput } from 'react-native';
 
-function Login({ navigation }) {
+function Login({ route, navigation }) {
+    const [username, setUsername] = React.useState('');
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Login Screen</Text>
-        <Button
-          title="Go to Login... again"
-          onPress={() => navigation.push('Login')}
-        />
-        <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-        <Button title="Go back" onPress={() => navigation.goBack()} />
-        <Button
-          title="Go back to first screen in stack"
-          onPress={() => navigation.popToTop()}
-        />
+        <Text>User name</Text>
+            <TextInput 
+                style={styles.input}
+                placeholder="username"
+                value={username}
+                onChangeText={setUsername}
+             />
+            <Text>Password</Text>
+            <TextInput 
+                style={styles.input}
+                placeholder="password"
+            />
+        
+        <Button title="Login" onPress={() => navigation.navigate({
+                    name: 'Home',
+                    params: { username: username, userId: Math.floor(Math.random() * 100) },
+                    merge: true,
+                  })
+        } />
       </View>
     );
   }
+
+const styles = StyleSheet.create({
+    container: { 
+        flex: 1, 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+    },
+    input:{
+        padding: 10, 
+        backgroundColor: 'white'
+    },
+    label: {
+
+    },
+})
 
 export default Login;
