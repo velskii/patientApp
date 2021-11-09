@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Register from './Register';
 import Login from './Login';
 import AddPatient from './AddPatient';
+import PatientList from './PatientList';
 
 
 function Home({ navigation, route }) {
@@ -27,27 +28,41 @@ function Home({ navigation, route }) {
             {
                 route.params?.username.length > 0 
                 ? (<>
-                    <View style={styles.label}>
+                    <View style={styles.info}>
                         <Text>Home Screen</Text>
                         <Text>UserId: {route.params?.userId}</Text>
                         <Text>Username: {route.params?.username}</Text>
                     </View>
-                    <Button
-                        title="AddPatient"
-                        onPress={() => navigation.navigate('AddPatient', {
-                            patientId: 86,
-                            otherParam: 'anything you want here',
-                        })} />
+                    <View style={styles.btn_group}>
+                        <View style={styles.addPatient}>
+                            <TouchableOpacity
+                            onPress={() => navigation.navigate('AddPatient', {
+                                patientId: 86,
+                                otherParam: 'anything you want here',
+                            })}>
+                                <Text>Add a Patient</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.patientList}>
+                            <TouchableOpacity
+                            onPress={() => navigation.navigate('PatientList')}>
+                                <Text>Patient List</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
                     </>) 
                 : (<>
-                    <Text style={styles.label}>Dont have an account. Please login first.</Text>
-                    
-                    <View style={styles.btn_group}>
-                        <TouchableOpacity
-                        onPress={() => navigation.navigate('Login')}>
-                            <Text>Login</Text>
-                        </TouchableOpacity>
-                    </View></>)
+                    <View style={styles.info}>
+                        <Text>Don't have an account. Please login first.</Text>
+                        <View style={styles.btn_login}>
+                            <TouchableOpacity
+                            onPress={() => navigation.navigate('Login')}>
+                                <Text>Login</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    </>)
             }
         </View>
         );
@@ -77,7 +92,11 @@ function App() {
         <Stack.Screen 
         name="AddPatient" 
         component={AddPatient} 
-        options={{ title: 'AddPatient' }}/>
+        options={{ title: 'Add Patient' }}/>
+        <Stack.Screen 
+        name="PatientList" 
+        component={PatientList} 
+        options={{ title: 'Patient List' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -86,22 +105,50 @@ function App() {
 const styles = StyleSheet.create({
     container: { 
         flex: 1, 
+        
+    },
+    info: {
         alignItems: 'center', 
+        marginTop: 20,
     },
     input:{
         padding: 10, 
         backgroundColor: 'white'
     },
-    label: {
-        marginTop: 20,
-    },
-    btn_group: {
+    btn_login: {
         padding: 15,
         margin: 15,
         textAlign: 'center',
         width: 100,
         height: 50,
+        alignSelf: 'center',
         backgroundColor: 'steelblue'
+    },
+    btn_group: {
+        flex: 1,
+        flexDirection: 'row',
+        padding: 15,
+        margin: 10,
+        justifyContent: 'space-around',
+    },
+    addPatient: {
+        marginTop: 50,
+        height: 50,
+        backgroundColor: 'lightblue',
+        textAlign: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
+    patientList: {
+        marginTop: 50,
+        color: 'blue',
+        height: 50,
+        backgroundColor: 'lightblue',
+        textAlign: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'black',
     },
 })
 
