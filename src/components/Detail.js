@@ -13,7 +13,7 @@ class Detail extends React.Component {
         patient: this.props.initialPatientData
     }
     async componentDidMount(){
-        const fullDeal = await ajax.fetchDealDetail(this.state.patient.key);
+        const fullDeal = await ajax.fetchDealDetail(this.state.patient._id);
         console.log(fullDeal);
         this.setState({
             patient: fullDeal
@@ -27,14 +27,14 @@ class Detail extends React.Component {
                     <Text style={styles.backLink}>Back</Text>
                 </TouchableOpacity>
                 <Image 
-                source={{ uri: patient.media[0]}}
+                source={{ }}
                 style={styles.image}
                 />
                 <View style={styles.info}>
-                    <Text style={styles.title}>{patient.title}</Text>
+                    <Text style={styles.title}>{patient.firstName} {patient.lastName}</Text>
                         <View style={styles.footer}>
-                            <Text style={styles.cause}>Name: {patient.cause.name}</Text>
-                            <Text style={styles.price}>Gender: {priceDisplay(patient.price)}</Text>
+                            <Text style={styles.cause}>Age: {patient.age}</Text>
+                            <Text style={styles.price}>Gender: {patient.gender}</Text>
                         </View>
                 </View>
                 {

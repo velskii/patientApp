@@ -10,10 +10,10 @@ class PatientDetail extends React.Component {
     }
     async componentDidMount(){
         const { route } = this.props;
-        const fullDeal = await ajax.fetchPatientDetail(route.params?.patientId);
-        console.log(fullDeal);
+        const patientInfo = await ajax.fetchPatientDetail(route.params?.patientId);
+        console.log(patientInfo);
         this.setState({
-            patient: fullDeal
+            patient: patientInfo
         });
     }
     render() {
@@ -28,10 +28,10 @@ class PatientDetail extends React.Component {
                 style={styles.image}
                 /> */}
                 <View style={styles.info}>
-                    <Text style={styles.title}>{patient.title}</Text>
+                    <Text style={styles.title}>{patient.firstName} {patient.lastName}</Text>
                         <View style={styles.footer}>
-                            <Text style={styles.cause}>Name: {patient.charityName}</Text>
-                            <Text style={styles.price}>Gender: {priceDisplay(patient.price)}</Text>
+                            <Text style={styles.cause}>Age: {patient.age}</Text>
+                            <Text style={styles.price}>Gender: {patient.gender}</Text>
                             
                             <TouchableOpacity style={styles.clinicalBtn} onPress={() => this.props.navigation.navigate('ClinicalRecords')} >
                                 <Text>Clinical Records</Text>

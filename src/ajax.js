@@ -40,9 +40,9 @@ export default {
             console.error(error);
         }
     },
-    async fetchPatientDetail(dealId){
+    async fetchPatientDetail(patientId){
         try {
-            const response = await fetch(apiHost+'/api/deals/' + dealId);
+            const response = await fetch(apiHost+'/patients/' + patientId);
             const json = await response.json();
             return json;
           } catch (error) {

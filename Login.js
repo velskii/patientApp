@@ -5,8 +5,7 @@ import Register from './Register';
 function Login({ route, navigation }) {
     const [username, setUsername] = React.useState('');
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Login Screen</Text>
+      <View style={styles.container}>
         <Text>User name</Text>
             <TextInput 
                 style={styles.input}
@@ -42,17 +41,15 @@ const styles = StyleSheet.create({
     container: { 
         flex: 1, 
         alignItems: 'center', 
-        justifyContent: 'center' 
+        marginTop: 50
     },
     input:{
-        padding: 10, 
+        padding: 10,
+        margin: 10,
         backgroundColor: 'white'
     },
-    label: {
-
-    },
     registerLink: {
-
+        margin: 10
     },
 })
 
