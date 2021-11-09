@@ -7,6 +7,8 @@ import Register from './Register';
 import Login from './Login';
 import AddPatient from './AddPatient';
 import PatientList from './PatientList';
+import TaskList from './TaskList';
+import TaskDetail from './TaskDetail';
 
 
 function Home({ navigation, route }) {
@@ -34,6 +36,14 @@ function Home({ navigation, route }) {
                         <Text>Username: {route.params?.username}</Text>
                     </View>
                     <View style={styles.btn_group}>
+                        <View style={styles.taskListBtn}>
+                            <TouchableOpacity
+                            onPress={() => navigation.navigate('TaskList', {
+                                patientId: 86,
+                            })}>
+                                <Text>Your Task List</Text>
+                            </TouchableOpacity>
+                        </View>
                         <View style={styles.addPatient}>
                             <TouchableOpacity
                             onPress={() => navigation.navigate('AddPatient', {
@@ -90,6 +100,14 @@ function App() {
         options={{ title: 'Login' }}
         initialParams={{ patientId: 42 }}/>
         <Stack.Screen 
+        name="TaskList" 
+        component={TaskList} 
+        options={{ title: 'Your Task List' }}/>
+        <Stack.Screen 
+        name="TaskDetail" 
+        component={TaskDetail} 
+        options={{ title: 'About this Task' }}/>
+        <Stack.Screen 
         name="AddPatient" 
         component={AddPatient} 
         options={{ title: 'Add Patient' }}/>
@@ -132,6 +150,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     addPatient: {
+        marginTop: 50,
+        height: 50,
+        backgroundColor: 'lightblue',
+        textAlign: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
+    taskListBtn: {
         marginTop: 50,
         height: 50,
         backgroundColor: 'lightblue',

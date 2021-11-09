@@ -29,4 +29,53 @@ export default {
             console.error(error);
         }
     },
+
+    async fetchInitialPatients(){
+        try {
+            // const response = await fetch(apiHost+'/movies.json');
+            const response = await fetch(apiHost+'/api/deals');
+            const json = await response.json();
+            return json;
+          } catch (error) {
+            console.error(error);
+        }
+    },
+    async fetchPatientDetail(dealId){
+        try {
+            const response = await fetch(apiHost+'/api/deals/' + dealId);
+            const json = await response.json();
+            return json;
+          } catch (error) {
+            console.error(error);
+        }
+    },
+    async fetchPatientSearchResults(searchTerm){
+        try {
+            const response = await fetch(apiHost+'/api/deals?searchTerm=' + searchTerm);
+            const json = await response.json();
+            return json;
+          } catch (error) {
+            console.error(error);
+        }
+    },
+    async fetchTasks(){
+        try {
+            const response = await fetch(apiHost+'/api/deals/');
+            const json = await response.json();
+            return json;
+          } catch (error) {
+            console.error(error);
+        }
+    },
+    async fetchTaskDetail(taskId){
+        try {
+            const response = await fetch(apiHost+'/api/deals/' + taskId);
+            const json = await response.json();
+            return json;
+          } catch (error) {
+            console.error(error);
+        }
+    },
+
+
 };

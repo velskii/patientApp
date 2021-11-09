@@ -1,55 +1,56 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ajax from "./src/ajax";
-import DealList from "./src/components/DealList";
-import DealDetail from "./src/components/DealDetail";
+import List from "./src/components/List";
+import Detail from "./src/components/Detail";
 import SearchBar from "./src/components/SearchBar";
 
 class PatientList extends React.Component {
     state = {
-        deals : [],
-        dealsFromSearch: [],
-        currentDealId : null,
+        patients : [],
+        patientsFromSearch: [],
+        currentPatientId : null,
     };
-    searchDeals = async (searchTerm) => {
-      const dealsFromSearch =  await ajax.fetchDealSearchResults(searchTerm);
-      this.setState({ dealsFromSearch });
+    searchPatients = async (searchTerm) => {
+      const patientsFromSearch =  await ajax.fetchPatientSearchResults(searchTerm);
+      console.log(patientsFromSearch);
+      this.setState({ patientsFromSearch });
     }
     clearSearch = () => {
-      this.setState({ dealsFromSearch: [], });
+      this.setState({ patientsFromSearch: [], });
     }
     async componentDidMount() {
-        const deals = await ajax.fetchInitialDeals();
-        // console.log(deals);
-        this.setState({ deals });
+        const patients = await ajax.fetchInitialPatients();
+        // console.log(patients);
+        this.setState({ patients });
     }
-    setCurrentDeal = (dealId) => {
+    setCurrentPatient = (patientId) => {
         this.setState({
-            currentDealId: dealId
+            currentPatientId: patientId
         });
     }
-    unSetCurrentDeal = () => {
+    unSetCurrentPatient = () => {
         this.setState({
-            currentDealId: null
+            currentPatientId: null
         });
     }
-    currentDeal = () => {
-        return this.state.deals.find(
-            (deal) => deal.key === this.state.currentDealId
+    currentPatient = () => {
+        return this.state.patients.find(
+            (patient) => patient.key === this.state.currentPatientId
         );
     }
     render () {
         {
-            if (this.state.currentDealId) {
-                return <DealDetail initialDealData={this.currentDeal()}
-                onBack={this.unSetCurrentDeal}
+            if (this.state.currentPatientId) {
+                return <Detail initialPatientData={this.currentPatient()}
+                onBack={this.unSetCurrentPatient}
                 />
             }
-            if (this.state.deals.length > 0) {
+            if (this.state.patients.length > 0) {
                 return (
                   <View style={styles.main}>
                     <SearchBar />
-                    <DealList deals={this.state.deals} onItemPress={this.setCurrentDeal} />
+                    <List patients={this.state.patients} onItemPress={this.setCurrentPatient} />
                   </View>
                 );
             }
