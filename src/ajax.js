@@ -44,6 +44,7 @@ export default {
         try {
             const response = await fetch(apiHost+'/patients/' + patientId);
             const json = await response.json();
+
             return json;
           } catch (error) {
             console.error(error);

@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, Image, StyleSheet, TouchableOpacity} from "react-native";
+import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from "react-native";
 import PropTypes from "prop-types";
 import { priceDisplay } from "./src/util";
 import ajax from "./src/ajax";
@@ -10,7 +10,7 @@ class PatientDetail extends React.Component {
     }
     async componentDidMount(){
         const { route } = this.props;
-        const patientInfo = await ajax.fetchPatientDetail(route.params?.patientId);
+        const patientInfo = await ajax.fetchPatientDetail(route.params?.patientId);        
         console.log(patientInfo);
         this.setState({
             patient: patientInfo
@@ -19,41 +19,61 @@ class PatientDetail extends React.Component {
     render() {
         const {patient} = this.state;
         return (
-            <View style={styles.deal}>
-                <TouchableOpacity onPress={this.props.onBack}>
-                    <Text style={styles.backLink}>Back</Text>
-                </TouchableOpacity>
-                {/* <Image 
-                source={{ uri: patient.media[0]}}
-                style={styles.image}
-                /> */}
-                <View style={styles.info}>
-                    <Text style={styles.title}>{patient.firstName} {patient.lastName}</Text>
-                        <View style={styles.footer}>
-                            <Text style={styles.cause}>Age: {patient.age}</Text>
-                            <Text style={styles.price}>Gender: {patient.gender}</Text>
-                            
+            <FlatList
+                data={this.state.patient}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({item}) => {
+                    
+                return (
+                    <View style={styles.deal}>
+                        {/* <TouchableOpacity onPress={this.props.onBack}>
+                            <Text style={styles.backLink}>Back</Text>
+                        </TouchableOpacity> */}
+                        {/* <Image 
+                            source={{ }}
+                            style={styles.image}
+                        /> */}
+                
+                        <View style={styles.info}>
+                            <Text style={styles.title}>{item.firstName} {item.lastName}</Text>
+                            <View style={styles.footer}>
+                                <Text style={styles.cause}>Age: {item.age}</Text>                                                                
+                            </View>
+                            <View style={styles.footer}>
+                                <Text style={styles.price}>Gender: {item.gender}</Text>
+                            </View>
+                            <View style={styles.footer}>
+                                <Text style={styles.cause}>Health Insurance Number: {item.healthInsuranceNo}</Text>
+                            </View>
+                            <View style={styles.footer}>
+                                <Text style={styles.price}>Phone: {item.phoneNo}</Text>
+                            </View>
+                            <View style={styles.footer}>
+                                <Text style={styles.price}>Email: {item.email}</Text>
+                            </View>
                             <TouchableOpacity style={styles.clinicalBtn} onPress={() => this.props.navigation.navigate('ClinicalRecords')} >
-                                <Text>Clinical Records</Text>
+                                <Text style={styles.labelBtn}>Clinical Records</Text>
                             </TouchableOpacity>
-                            
                         </View>
-                </View>
-                {
-                    patient.user && (<View>
-                        <Image source={{ uri:patient.user.avatar }} style={styles.avatar} />
-                        <Text>{patient.user.name}</Text>
-                    </View>)
+                    {
+                        patient.user && (<View>
+                            <Image source={{ uri:patient.user.avatar }} style={styles.avatar} />
+                            <Text>{patient.user.name}</Text>
+                        </View>)
+                    }
+                        <View>
+                            <Text>{patient.description}</Text>
+                        </View>
+                        <View>
+                            <Text>Health Status: </Text>
+                            <Text>Drug History: </Text>
+                            <Text>Allergy History: </Text>
+                        </View>
+                    </View>
+                    )
                 }
-                <View>
-                    <Text>{patient.description}</Text>
-                </View>
-                <View>
-                    <Text>Health Status: </Text>
-                    <Text>Drug History: </Text>
-                    <Text>Allergy History: </Text>
-                </View>
-            </View>
+            }/>
+            
         );
     }
 }
@@ -106,11 +126,13 @@ const styles = StyleSheet.create({
     clinicalBtn: {
         flex: 1,
         textAlign: 'right',
-        backgroundColor: '#bbb',
         borderColor: 'black',
-        borderWidth: 1,
         textAlign: 'center',
         justifyContent: 'center',
+        margin: 15
+    },
+    labelBtn: {
+        color: "#1c42eb",
     },
     avatar: {
         width: 60,
