@@ -23,7 +23,7 @@ class List extends React.Component {
 
 const styles = StyleSheet.create({
     list:{
-        backgroundColor: '#ddd',
+        backgroundColor: '#fff',
         flex: 1,
         width: "100%",
         justifyContent: "center",

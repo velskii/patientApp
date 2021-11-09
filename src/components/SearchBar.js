@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
     render() {
         return (
             <TextInput
-            placeholder="Seach all deals"
+            placeholder="Seach all patients"
             style={styles.input}
             onChangeText={this.handleChange}
             />
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     input: {
         height: 40,
         marginHorizontal: 12,
+        marginBottom: 12,
+        paddingLeft: 20
     }
 })
 

@@ -1,5 +1,5 @@
 // const apiHost='https://reactnative.dev';
-const apiHost = 'https://bakesaleforgood.com';
+const apiHost = 'http://127.0.0.1:5000';
 export default {
     async fetchInitialDeals(){
         try {
@@ -33,7 +33,7 @@ export default {
     async fetchInitialPatients(){
         try {
             // const response = await fetch(apiHost+'/movies.json');
-            const response = await fetch(apiHost+'/api/deals');
+            const response = await fetch(apiHost+'/patients');
             const json = await response.json();
             return json;
           } catch (error) {

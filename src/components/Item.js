@@ -9,22 +9,21 @@ class Item extends React.Component {
         onPress: PropTypes.func.isRequired,
     }
     handlePress = () => {
-        this.props.onPress(this.props.patient.key);
+        this.props.onPress(this.props.patient._id);
     }
     render() {
         const {patient} = this.props;
         return (
-            <TouchableOpacity onPress={this.handlePress} style={styles.deal} >
+            <TouchableOpacity onPress={this.handlePress} style={styles.patient} >
                 <Image 
-                source={{ uri: patient.media[0]}}
+                source={{ }}
                 style={styles.image}
                 />
                 <View style={styles.info}>
-                    <Text style={styles.title}>Name: {patient.title}</Text>
-                        <View style={styles.footer}>
-                            <Text style={styles.cause}>Age: {patient.cause.name}</Text>
-                            <Text style={styles.price}>Gender: {priceDisplay(patient.price)}</Text>
-                        </View>
+                    <Text style={styles.title}>{patient.firstName} {patient.lastName}</Text>
+                    <View style={styles.footer}>
+                       <Text style={styles.cause}>Age: {patient.age} Gender: {patient.gender}</Text>                            
+                    </View>
                 </View>
             </TouchableOpacity>
         );
@@ -32,7 +31,7 @@ class Item extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    deal: {
+    patient: {
         marginHorizontal: 12,
         marginTop: 12,
         flex: 10,
