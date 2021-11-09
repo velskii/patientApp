@@ -25,8 +25,11 @@ class PatientList extends React.Component {
         this.setState({ patients });
     }
     setCurrentPatient = (patientId) => {
+        this.props.navigation.navigate('PatientDetail', {
+            patientId: patientId,
+        });
         this.setState({
-            currentPatientId: patientId
+            // currentPatientId: patientId
         });
     }
     unSetCurrentPatient = () => {

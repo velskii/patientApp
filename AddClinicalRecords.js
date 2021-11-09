@@ -1,50 +1,35 @@
 import * as React from 'react';
 import { Button, View, Text, StyleSheet, TextInput } from 'react-native';
 
-function AddPatient({ route, navigation }) {
+function AddClinicalRecords({ route, navigation }) {
     const { patientId } = route.params;
     return (
-      <View style={styles.container}>
+        <View style={styles.container}>
         <Text>patientId: {JSON.stringify(patientId)}</Text>
         
-        <Text>First Name: </Text>
+        <Text>Blood Pressure: </Text>
         <TextInput 
             style={styles.input}
-            placeholder="First Name"
+            placeholder="Blood Pressure"
         />
-        <Text>Last Name: </Text>
+        <Text>Respiratory Rate: </Text>
         <TextInput 
             style={styles.input}
-            placeholder="Last Name"
+            placeholder="Respiratory Rate"
         />
-        <Text>Gender: </Text>
+        <Text>Blood Oxygen Level: </Text>
         <TextInput 
             style={styles.input}
-            placeholder="Gender"
+            placeholder="Blood Oxygen Level"
         />
-        <Text>Age: </Text>
+        <Text>Heartbeat Rate: </Text>
         <TextInput 
             style={styles.input}
-            placeholder="Age"
-        />
-        <Text>Health Insurance Number: </Text>
-        <TextInput 
-            style={styles.input}
-            placeholder="66666"
-        />
-        <Text>Phone Number: </Text>
-        <TextInput 
-            style={styles.input}
-            placeholder="123456"
-        />
-        <Text>Email: </Text>
-        <TextInput 
-            style={styles.input}
-            placeholder="123@gmail.com"
+            placeholder="Heartbeat Rate"
         />
         
         <Button title="Submit" onPress={() => navigation.navigate({
-                    name: 'PatientList',
+                    name: 'ClinicalRecords',
                     params: { patientId: Math.floor(Math.random() * 100) },
                     merge: true,
                   })
@@ -68,4 +53,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default AddPatient;
+export default AddClinicalRecords;

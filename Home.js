@@ -7,8 +7,11 @@ import Register from './Register';
 import Login from './Login';
 import AddPatient from './AddPatient';
 import PatientList from './PatientList';
+import PatientDetail from './PatientDetail';
 import TaskList from './TaskList';
 import TaskDetail from './TaskDetail';
+import ClinicalRecords from './ClinicalRecords';
+import AddClinicalRecords from './AddClinicalRecords';
 
 
 function Home({ navigation, route }) {
@@ -115,6 +118,18 @@ function App() {
         name="PatientList" 
         component={PatientList} 
         options={{ title: 'Patient List' }}/>
+        <Stack.Screen 
+        name="PatientDetail" 
+        component={PatientDetail} 
+        options={{ title: 'Patient Detail' }}/>
+        <Stack.Screen 
+        name="ClinicalRecords" 
+        component={ClinicalRecords} 
+        options={{ title: 'Clinical Records of a patient' }}/>
+        <Stack.Screen 
+        name="AddClinicalRecords" 
+        component={AddClinicalRecords} 
+        options={{ title: 'Add Clinical Records of a patient' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
