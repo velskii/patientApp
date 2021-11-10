@@ -62,7 +62,7 @@ function Home({ navigation, route }) {
                             style={{width: 100, height: 100, marginBottom: 20}}
                             source={require('./assets/pharmaceutical-medical-symbol.jpeg')}
                         />
-                        <Text>please login to start your session.</Text>
+                        <Text>Please login to start your session.</Text>
                         <View style={styles.btn_login}>
                             <TouchableOpacity
                             onPress={() => navigation.navigate('Login')}>
@@ -124,7 +124,7 @@ function App() {
         <Stack.Screen 
         name="AddClinicalRecords" 
         component={AddClinicalRecords} 
-        options={{ title: 'Add Clinical Records of a patient' }}/>
+        options={{ title: 'Add New Clinical Records' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
