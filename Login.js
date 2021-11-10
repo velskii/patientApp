@@ -6,7 +6,7 @@ function Login({ route, navigation }) {
     const [username, setUsername] = React.useState('');
     return (
       <View style={styles.container}>
-        <Text>User name</Text>
+        <Text>Username</Text>
             <TextInput 
                 style={styles.input}
                 placeholder="username"

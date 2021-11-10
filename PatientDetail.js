@@ -65,12 +65,7 @@ class PatientDetail extends React.Component {
                     }
                         <View>
                             <Text>{patient.description}</Text>
-                        </View>
-                        <View>
-                            <Text>Health Status: </Text>
-                            <Text>Drug History: </Text>
-                            <Text>Allergy History: </Text>
-                        </View>
+                        </View>                        
                     </View>
                     )
                 }
