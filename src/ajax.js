@@ -61,7 +61,7 @@ export default {
     },
     async fetchTasks(){
         try {
-            const response = await fetch(apiHost+'/api/deals/');
+            const response = await fetch(apiHost+'/patients');
             const json = await response.json();
             return json;
           } catch (error) {
@@ -70,7 +70,7 @@ export default {
     },
     async fetchTaskDetail(taskId){
         try {
-            const response = await fetch(apiHost+'/api/deals/' + taskId);
+            const response = await fetch(apiHost+'/clinical_records/' + taskId);
             const json = await response.json();
             return json;
           } catch (error) {

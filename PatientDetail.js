@@ -51,7 +51,9 @@ class PatientDetail extends React.Component {
                             <View style={styles.footer}>
                                 <Text style={styles.price}>Email: {item.email}</Text>
                             </View>
-                            <TouchableOpacity style={styles.clinicalBtn} onPress={() => this.props.navigation.navigate('ClinicalRecords')} >
+                            <TouchableOpacity style={styles.clinicalBtn} onPress={() => this.props.navigation.navigate('ClinicalRecords', {
+                            patientId: item._id,
+                            })} >
                                 <Text style={styles.labelBtn}>Clinical Records</Text>
                             </TouchableOpacity>
                         </View>

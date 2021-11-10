@@ -125,7 +125,7 @@ function App() {
         <Stack.Screen 
         name="ClinicalRecords" 
         component={ClinicalRecords} 
-        options={{ title: 'Clinical Records of a patient' }}/>
+        options={{ title: 'Clinical Records' }}/>
         <Stack.Screen 
         name="AddClinicalRecords" 
         component={AddClinicalRecords} 

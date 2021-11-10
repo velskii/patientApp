@@ -6,50 +6,64 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 class ClinicalRecords extends React.Component {
     state = {
-        tasks : [],
+        clinicalRecords : [],
     };
     async componentDidMount() {
-        const tasks = await ajax.fetchTasks();
-        // console.log(tasks);
-        this.setState({ tasks });
+        const { route } = this.props;
+        const clinicalRecords = await ajax.fetchTaskDetail(route.params?.patientId);
+        
+        this.setState({ clinicalRecords });
     }
     render () {
         const { navigation } = this.props;
         {
             return (
                 <View style={styles.container}>
-                    <View style={{height: 50, textAlign: 'right',}}>
-                    <TouchableOpacity
-                            onPress={() => navigation.navigate('AddClinicalRecords', {
-                                patientId: 86,
-                            })}>
-                                <Text>New Records</Text>
-                    </TouchableOpacity>
+                    <View style={styles.btnAddClinical}>
+                        <TouchableOpacity
+                                onPress={() => navigation.navigate('AddClinicalRecords', {
+                                    patientId: 86,
+                                })}>
+                                    <Text style={styles.newRecords}>New Records</Text>
+                        </TouchableOpacity>
                     </View>
-                <View style={styles.tableHeader}>
-                <View style={styles.taskId}>
-                        <Text>Medical Name</Text>
+                    <View style={styles.tableHeader}>
+                    {/* <View style={styles.taskId}>
+                            <Text>Medical Name</Text>
+                        </View>
+                        <View style={styles.time}>
+                            <Text>Time</Text>
+                        </View>
+                        <View style={styles.taskName}>
+                            <Text>doses</Text>
+                        </View> */}
                     </View>
-                    <View style={styles.time}>
-                        <Text>Time</Text>
-                    </View>
-                    <View style={styles.taskName}>
-                        <Text>doses</Text>
+                    <View style={styles.list}>                    
+                        <FlatList
+                            data={this.state.clinicalRecords}
+                            renderItem={({item}) => 
+                            <View style={styles.info}>
+                                <View style={styles.footer}>
+                                    <Text style={styles.taskNameDisplay}>Blood Pressure: </Text>
+                                    <Text>{item.bloodPressure}</Text>
+                                </View>
+                                <View style={styles.footer}>
+                                    <Text style={styles.taskNameDisplay}>Respiratory Rate: </Text>
+                                    <Text>{item.respiratoryRate}</Text>
+                                </View>
+                                <View style={styles.footer}>
+                                    <Text style={styles.taskNameDisplay}>Blood Oxygen level: </Text>
+                                    <Text>{item.bloodOxygenLevel}</Text>
+                                </View>
+                                <View style={styles.footer}>
+                                    <Text style={styles.taskNameDisplay}>Heartbeat Rate: </Text>
+                                    <Text>{item.heartBeatRate}</Text>
+                                </View>
+                            </View>
+                            }
+                        />
                     </View>
                 </View>
-                <View style={styles.list}>
-                <FlatList
-                    data={this.state.tasks}
-                    renderItem={({item}) => 
-                    <View style={styles.info}>
-                        <Text style={styles.taskNameDisplay}>{item.title}</Text>
-                        <Text style={styles.taskTimeDisplay}>7:00 AM</Text>
-                        <Text style={styles.taskStatusDisplay}>300 ml/day</Text>
-                    </View>
-                    }
-                />
-            </View>
-            </View>
             );
         }
     }
@@ -60,6 +74,15 @@ const styles = StyleSheet.create({
         // flex: 1,
         // justifyContent: "center",
         // alignItems: "center"
+    },
+    btnAddClinical: {
+        height: 50,
+        textAlign: "right",
+        marginRight: 10,
+        marginTop: 10
+    },
+    newRecords: {
+        color: "blue"
     },
     tableHeader: {
         flex: 3,
@@ -85,11 +108,11 @@ const styles = StyleSheet.create({
         width: '25%',
     },
     list: {
-        backgroundColor: '#ddd',
-        flex: 97,
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
+        // backgroundColor: '#ddd',
+        // flex: 97,
+        // width: "100%",
+        // justifyContent: "center",
+        // alignItems: "center",
     },
     info: {
         padding: 10,
@@ -97,10 +120,12 @@ const styles = StyleSheet.create({
         borderColor: "#bbb",
         borderWidth: 1,
         borderTopWidth: 0,
-        flex: 9,
+    },
+    footer: {
         flexDirection: 'row',
-        justifyContent: 'center',
-        textAlign: 'center',
+        justifyContent: 'space-around',
+        alignItems: "center",
+        marginTop: 15,
     },
     taskIdDsiplay: {
         fontSize: 16,
@@ -114,7 +139,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "bold",
         marginBottom: 5,
-        width: '25%',
+        // width: '25%',
     },
     taskStatusDisplay:{
         fontSize: 16,

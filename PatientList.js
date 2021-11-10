@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
         fontSize:20,
     },
     main: {
-      marginTop: 30,
+      marginTop: 10,
+      height: "100%"
     },
 });
 
