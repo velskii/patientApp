@@ -62,7 +62,7 @@ function Home({ navigation, route }) {
                             style={{width: 100, height: 100, marginBottom: 20}}
                             source={require('./assets/pharmaceutical-medical-symbol.jpeg')}
                         />
-                        <Text>Don't have an account. Please login first.</Text>
+                        <Text>please login to start your session.</Text>
                         <View style={styles.btn_login}>
                             <TouchableOpacity
                             onPress={() => navigation.navigate('Login')}>
