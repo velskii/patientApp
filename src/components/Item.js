@@ -1,7 +1,6 @@
 import React from "react";
 import {View, Text, Image, StyleSheet, TouchableOpacity} from "react-native";
 import PropTypes from "prop-types";
-import { priceDisplay } from "../util";
 
 class Item extends React.Component {
     static propTypes = {

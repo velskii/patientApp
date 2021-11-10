@@ -1,7 +1,5 @@
 import React from "react";
 import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from "react-native";
-import PropTypes from "prop-types";
-import { priceDisplay } from "./src/util";
 import ajax from "./src/ajax";
 
 class PatientDetail extends React.Component {

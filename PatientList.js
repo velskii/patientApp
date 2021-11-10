@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import ajax from "./src/ajax";
 import List from "./src/components/List";
-import Detail from "./src/components/Detail";
 import SearchBar from "./src/components/SearchBar";
 
 class PatientList extends React.Component {
@@ -45,11 +44,6 @@ class PatientList extends React.Component {
     render () {
         const { navigation } = this.props;
         {
-            if (this.state.currentPatientId) {
-                return <Detail initialPatientData={this.currentPatient()}
-                onBack={this.unSetCurrentPatient}
-                />
-            }
             if (this.state.patients.length > 0) {
                 return (
                   <View style={styles.main}>
