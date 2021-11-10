@@ -17,6 +17,26 @@ class ClinicalRecords extends React.Component {
     render () {
         const { navigation } = this.props;
         {
+            if(this.state.clinicalRecords == 0) {
+                return (
+                    <View style={styles.container}>
+                        <View>
+                            <Text style={styles.notification}>No data found</Text>    
+                        </View>
+                        <View style={styles.btnAddClinical}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('AddClinicalRecords', {
+                                    patientId: 86,
+                                })}>
+                                    <Text style={styles.newRecords}>New Records</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View>
+
+                        </View>
+                    </View>
+                );
+            }
             return (
                 <View style={styles.container}>
                     <View style={styles.btnAddClinical}>
@@ -24,7 +44,7 @@ class ClinicalRecords extends React.Component {
                                 onPress={() => navigation.navigate('AddClinicalRecords', {
                                     patientId: 86,
                                 })}>
-                                    <Text style={styles.newRecords}>New Records</Text>
+                                    <Text style={styles.newRecords}>Update Records</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.tableHeader}>
@@ -82,7 +102,8 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     newRecords: {
-        color: "blue"
+        color: "blue",
+        textAlign: "center"
     },
     tableHeader: {
         flex: 3,
@@ -101,10 +122,6 @@ const styles = StyleSheet.create({
     },
     taskName: {
         backgroundColor: 'skyblue',
-        width: '25%',
-    },
-    TaskStatus: {
-        backgroundColor: 'steelblue',
         width: '25%',
     },
     list: {
@@ -127,24 +144,18 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 15,
     },
-    taskIdDsiplay: {
-        fontSize: 16,
-        width: '25%',
-    },
-    taskTimeDisplay: {
-        fontSize: 16,
-        width: '25%',
-    },
     taskNameDisplay:{
         fontSize: 16,
         fontWeight: "bold",
         marginBottom: 5,
         // width: '25%',
     },
-    taskStatusDisplay:{
-        fontSize: 16,
-        width: '25%',
-    },
+    notification: {
+        fontSize: 14,
+        textAlign: "center",
+        fontWeight: "bold",
+        margin: 20
+    }
 });
 
 export default ClinicalRecords;
