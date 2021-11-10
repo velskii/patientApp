@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Button, View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -58,11 +58,15 @@ function Home({ navigation, route }) {
                     </>) 
                 : (<>
                     <View style={styles.info}>
+                        <Image
+                            style={{width: 100, height: 100, marginBottom: 20}}
+                            source={require('./assets/pharmaceutical-medical-symbol.jpeg')}
+                        />
                         <Text>Don't have an account. Please login first.</Text>
                         <View style={styles.btn_login}>
                             <TouchableOpacity
                             onPress={() => navigation.navigate('Login')}>
-                                <Text>Login</Text>
+                                <Text style={styles.txtLogin}>Login</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -177,6 +181,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
     },
+    txtLogin: {
+        color: "white"
+    }
 })
 
 export default App;
