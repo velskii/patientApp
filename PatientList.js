@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import ajax from "./src/ajax";
 import List from "./src/components/List";
 import Detail from "./src/components/Detail";
@@ -43,6 +43,7 @@ class PatientList extends React.Component {
         );
     }
     render () {
+        const { navigation } = this.props;
         {
             if (this.state.currentPatientId) {
                 return <Detail initialPatientData={this.currentPatient()}
@@ -54,6 +55,15 @@ class PatientList extends React.Component {
                   <View style={styles.main}>
                     <SearchBar />
                     <List patients={this.state.patients} onItemPress={this.setCurrentPatient} />
+                    <View style={styles.newPatient}>
+                            <TouchableOpacity
+                            onPress={() => navigation.navigate('AddPatient', {
+                                patientId: 86,
+                                otherParam: 'anything you want here',
+                            })}>
+                                <Text>Add a Patient</Text>
+                            </TouchableOpacity>
+                        </View>
                   </View>
                 );
             }
@@ -64,8 +74,8 @@ class PatientList extends React.Component {
                 <View style={styles.newPatient}>
                     <Text>No patient data yet, maybe </Text>
                     <Text style={{color: 'blue'}}
-                        onPress={() => navigation.navigate({
-                            name: 'AddPatient',
+                        onPress={() => navigation.navigate('AddPatient', {
+                            patientId: 86,
                         })}>Add a new Patient</Text>
                     <Text> ?</Text>
                 </View>
@@ -79,14 +89,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center",
-        alignItems: "center"
-    },
-    newPatient: {
-        fontSize:20,
+        alignItems: "center",
     },
     main: {
-      marginTop: 10,
-      height: "100%"
+        marginTop: 10,
+        height: "100%",
+        flex: 99,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: "center",
+    },
+    newPatient: {
+        marginTop: 50,
+        height: 30,
+        width: 100,
+        backgroundColor: 'lightblue',
+        textAlign: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'black',
     },
 });
 

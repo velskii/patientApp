@@ -62,7 +62,11 @@ class TaskDetail extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        
+        flex: 1, 
+        flexDirection: 'column',
+        justifyContent: 'center',
+        textAlign: 'center',
+        alignItems: 'center',
     },
     info: {
         flex: 1,
@@ -72,6 +76,7 @@ const styles = StyleSheet.create({
     },
     btn: {
         marginTop: 50,
+        paddingTop: 10,
         height: 50,
         width: 100,
         backgroundColor: 'lightblue',

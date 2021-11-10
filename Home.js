@@ -47,15 +47,6 @@ function Home({ navigation, route }) {
                                 <Text>Your Task List</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.addPatient}>
-                            <TouchableOpacity
-                            onPress={() => navigation.navigate('AddPatient', {
-                                patientId: 86,
-                                otherParam: 'anything you want here',
-                            })}>
-                                <Text>Add a Patient</Text>
-                            </TouchableOpacity>
-                        </View>
                         <View style={styles.patientList}>
                             <TouchableOpacity
                             onPress={() => navigation.navigate('PatientList')}>
@@ -138,7 +129,6 @@ function App() {
 const styles = StyleSheet.create({
     container: { 
         flex: 1, 
-        
     },
     info: {
         alignItems: 'center', 
@@ -164,18 +154,11 @@ const styles = StyleSheet.create({
         margin: 10,
         justifyContent: 'space-around',
     },
-    addPatient: {
-        marginTop: 50,
-        height: 50,
-        backgroundColor: 'lightblue',
-        textAlign: 'center',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'black',
-    },
     taskListBtn: {
-        marginTop: 50,
+        marginTop: 100,
+        paddingTop: 10,
         height: 50,
+        width: 100,
         backgroundColor: 'lightblue',
         textAlign: 'center',
         alignItems: 'center',
@@ -183,9 +166,11 @@ const styles = StyleSheet.create({
         borderColor: 'black',
     },
     patientList: {
-        marginTop: 50,
+        marginTop: 100,
+        paddingTop: 10,
         color: 'blue',
         height: 50,
+        width: 100,
         backgroundColor: 'lightblue',
         textAlign: 'center',
         alignItems: 'center',
