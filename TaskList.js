@@ -38,13 +38,13 @@ class TaskList extends React.Component {
                     renderItem={({item}) => 
 
                     <TouchableOpacity onPress={() => navigation.navigate('TaskDetail', {
-                        taskId: item.key,
+                        taskId: item._id,
                     })}>
                         <View style={styles.info}>
                             <Text style={styles.taskIdDsiplay}>601</Text>
-                            <Text style={styles.taskTimeDisplay}>7:00 AM</Text>
-                            <Text style={styles.taskNameDisplay}>{item.email}</Text>
-                            <Text style={styles.taskStatusDisplay}>Unfinished</Text>
+                            <Text style={styles.taskTimeDisplay}>{item.time}</Text>
+                            <Text style={styles.taskNameDisplay}>{item.taskName}</Text>
+                            <Text style={styles.taskStatusDisplay}>{item.status}}</Text>
                         </View>
                     </TouchableOpacity>
 

@@ -25,10 +25,10 @@ class TaskDetail extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.info}>
                     <View>
-                        <Text>Task ID: 302</Text>
+                        <Text>Task ID: {this.state.taskDetail._id}</Text>
                     </View>
                     <View>
-                        <Text>Task Name: {this.state.taskDetail.title}</Text>
+                        <Text>Task Name: {this.state.taskDetail.taskName}</Text>
                     </View>
                     <View>
                         <Text>Time: 10:00 AM</Text>
