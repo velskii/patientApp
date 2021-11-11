@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
         height: 40,
         marginHorizontal: 12,
         marginBottom: 12,
-        paddingLeft: 20
+        paddingLeft: 20,
+        backgroundColor: "azure"
     }
 })
 
