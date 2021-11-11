@@ -34,7 +34,7 @@ function AddClinicalRecords({ route, navigation }) {
                         merge: true,
                     })
             } />
-      </View>
+        </View>
     );
   }
 
@@ -47,11 +47,9 @@ const styles = StyleSheet.create({
     input:{
         padding: 10, 
         backgroundColor: 'white',
-        margin: 10
-    },
-    label: {
-
-    },
+        marginBottom: 10,
+        marginTop: 10
+    }
 })
 
 export default AddClinicalRecords;
