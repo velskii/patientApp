@@ -9,7 +9,7 @@ class PatientDetail extends React.Component {
     async componentDidMount(){
         const { route } = this.props;
         const patientInfo = await ajax.fetchPatientDetail(route.params?.patientId);        
-        console.log(patientInfo);
+        // console.log(patientInfo);
         this.setState({
             patient: patientInfo
         });

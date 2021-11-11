@@ -44,7 +44,7 @@ class PatientList extends React.Component {
     render () {
         const { navigation } = this.props;
         {
-            if (this.state.patients.length > 0) {
+            if (this.state.patients != undefined) {
                 return (
                     <View>
                       <View style={styles.searchbar}>
