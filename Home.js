@@ -39,18 +39,18 @@ function Home({ navigation, route }) {
                         <Text>Username: {route.params?.username}</Text>
                     </View>
                     <View style={styles.btn_group}>
-                        <View style={styles.taskListBtn}>
+                        <View style={styles.patientList}>
                             <TouchableOpacity
                             onPress={() => navigation.navigate('TaskList', {
                                 patientId: 86,
                             })}>
-                                <Text>Your Task List</Text>
+                                <Text style={styles.textColor}>Your Task List</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.patientList}>
                             <TouchableOpacity
                             onPress={() => navigation.navigate('PatientList')}>
-                                <Text>Patient List</Text>
+                                <Text style={styles.textColor}>Patient List</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -132,7 +132,8 @@ function App() {
 
 const styles = StyleSheet.create({
     container: { 
-        flex: 1, 
+        flex: 1,
+        backgroundColor: "#FDFFB7"
     },
     info: {
         alignItems: 'center', 
@@ -158,31 +159,26 @@ const styles = StyleSheet.create({
         margin: 10,
         justifyContent: 'space-around',
     },
-    taskListBtn: {
-        marginTop: 100,
-        paddingTop: 10,
-        height: 50,
-        width: 100,
-        backgroundColor: 'lightblue',
-        textAlign: 'center',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'black',
-    },
     patientList: {
-        marginTop: 100,
-        paddingTop: 10,
-        color: 'blue',
-        height: 50,
-        width: 100,
-        backgroundColor: 'lightblue',
+        marginTop: 50,
+        color: '#FFC745',
+        height: 70,
+        width: "auto",
+        backgroundColor: '#005C5B',
         textAlign: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: '#FFC745',
+        borderRadius: 20
     },
     txtLogin: {
         color: "white"
+    },
+    textColor: {
+        color: "#FFC745",
+        fontSize: 16,
+        fontWeight: "bold",
+        margin: 20
     }
 })
 
