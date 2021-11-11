@@ -46,20 +46,24 @@ class PatientList extends React.Component {
         {
             if (this.state.patients.length > 0) {
                 return (
-                  <View style={styles.main}>
-                    <SearchBar />
-                    <List patients={this.state.patients} onItemPress={this.setCurrentPatient} />
-                    <View style={styles.newPatient}>
-                            <TouchableOpacity
-                            onPress={() => navigation.navigate('AddPatient', {
-                                patientId: 86,
-                                otherParam: 'anything you want here',
-                            })}>
-                                <Text>Add a Patient</Text>
-                            </TouchableOpacity>
-                        </View>
-                  </View>
-                );
+                    <View>
+                      <View style={styles.searchbar}>
+                          <SearchBar />
+                      {/* <View style={styles.newPatient}> */}
+                          <TouchableOpacity
+                              onPress={() => navigation.navigate('AddPatient', {
+                                  patientId: 86,
+                                  otherParam: 'anything you want here',
+                              })}>
+                              <Text style={{textAlign:"right", color: "blue", marginTop: 10, textAlign: "right"}}>Add a Patient</Text>
+                          </TouchableOpacity>
+                          {/* </View> */}
+                          </View>
+                          <View style={styles.main}>
+                              <List patients={this.state.patients} onItemPress={this.setCurrentPatient} />
+                          </View>
+                    </View>
+                  );
             }
         
         }
@@ -87,11 +91,15 @@ const styles = StyleSheet.create({
     },
     main: {
         marginTop: 10,
-        height: "100%",
-        flex: 99,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: "center",
+        height: "auto",
+        width: "100%"
+    },
+    searchbar: {
+        marginTop: 10,
+        height: "auto",
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "center"
     },
     newPatient: {
         marginTop: 50,

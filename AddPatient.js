@@ -5,7 +5,7 @@ function AddPatient({ route, navigation }) {
     const { patientId } = route.params;
     return (
       <View style={styles.container}>
-        <Text>patientId: {JSON.stringify(patientId)}</Text>
+        {/* <Text>patientId: {JSON.stringify(patientId)}</Text> */}
         
         <Text>First Name: </Text>
         <TextInput 
@@ -55,12 +55,14 @@ function AddPatient({ route, navigation }) {
 
 const styles = StyleSheet.create({
     container: { 
-        flex: 1, 
-        alignItems: 'center', 
-        justifyContent: 'center' 
+        flex: 1,
+        margin: 10
+        // alignItems: 'center', 
+        // justifyContent: 'center' 
     },
     input:{
-        padding: 10, 
+        padding: 10,
+        margin: 10,
         backgroundColor: 'white'
     },
     label: {
