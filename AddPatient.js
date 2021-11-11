@@ -25,12 +25,12 @@ function AddPatient({ route, navigation }) {
                 value="male"
                 status={ checked === 'male' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked('male')}
-            /><Text>male</Text>
+            /><Text style={styles.txtGender}>Male</Text>
             <RadioButton
                 value="female"
                 status={ checked === 'female' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked('female')}
-            /><Text>female</Text>
+            /><Text style={styles.txtGender}>Female</Text>
         </View>
         <Text>Age: </Text>
         <TextInput 
@@ -80,6 +80,10 @@ const styles = StyleSheet.create({
     },
     gender: {
         flexDirection: 'row',
+        marginTop: 10
+    },
+    txtGender: {
+        marginTop: 10
     }
 })
 
