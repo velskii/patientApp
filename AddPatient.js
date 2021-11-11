@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Button, View, Text, StyleSheet, TextInput } from 'react-native';
+import { RadioButton } from 'react-native-paper';
 
 function AddPatient({ route, navigation }) {
     const { patientId } = route.params;
+    const [checked, setChecked] = React.useState('male');
     return (
       <View style={styles.container}>
         {/* <Text>patientId: {JSON.stringify(patientId)}</Text> */}
@@ -18,9 +20,15 @@ function AddPatient({ route, navigation }) {
             placeholder="Last Name"
         />
         <Text>Gender: </Text>
-        <TextInput 
-            style={styles.input}
-            placeholder="Gender"
+        <RadioButton
+            value="male"
+            status={ checked === 'male' ? 'checked' : 'unchecked' }
+            onPress={() => setChecked('male')}
+        />
+        <RadioButton
+            value="female"
+            status={ checked === 'female' ? 'checked' : 'unchecked' }
+            onPress={() => setChecked('female')}
         />
         <Text>Age: </Text>
         <TextInput 

@@ -15,7 +15,7 @@ class TaskDetail extends React.Component {
     async componentDidMount() {
         const { route } = this.props;
         const taskDetail = await ajax.fetchTaskDetail(route.params?.taskId);
-        console.log(taskDetail);
+        // console.log(taskDetail);
         this.setState({ taskDetail });
     }
     render () {

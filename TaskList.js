@@ -10,7 +10,7 @@ class TaskList extends React.Component {
     };
     async componentDidMount() {
         const tasks = await ajax.fetchTasks();
-        // console.log(tasks);
+        console.log(tasks);
         this.setState({ tasks });
     }
     render () {
@@ -43,7 +43,7 @@ class TaskList extends React.Component {
                         <View style={styles.info}>
                             <Text style={styles.taskIdDsiplay}>601</Text>
                             <Text style={styles.taskTimeDisplay}>7:00 AM</Text>
-                            <Text style={styles.taskNameDisplay}>{item.title}</Text>
+                            <Text style={styles.taskNameDisplay}>{item.email}</Text>
                             <Text style={styles.taskStatusDisplay}>Unfinished</Text>
                         </View>
                     </TouchableOpacity>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         // alignItems: "center"
     },
     tableHeader: {
-        flex: 3,
+        flex: 10,
         fontSize:40,
         flexDirection: 'row',
         justifyContent:'space-around',
