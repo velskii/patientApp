@@ -10,7 +10,7 @@ class ClinicalRecords extends React.Component {
     };
     async componentDidMount() {
         const { route } = this.props;
-        const clinicalRecords = await ajax.fetchTaskDetail(route.params?.patientId);
+        const clinicalRecords = await ajax.fetchClinicalRecords(route.params?.patientId);
         
         this.setState({ clinicalRecords });
     }
