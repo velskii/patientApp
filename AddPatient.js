@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text, StyleSheet, TextInput } from 'react-native';
+import { Button, View, Text, StyleSheet, TextInput, Label } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
 function AddPatient({ route, navigation }) {
@@ -19,17 +19,19 @@ function AddPatient({ route, navigation }) {
             style={styles.input}
             placeholder="Last Name"
         />
-        <Text>Gender: </Text>
-        <RadioButton
-            value="male"
-            status={ checked === 'male' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked('male')}
-        />
-        <RadioButton
-            value="female"
-            status={ checked === 'female' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked('female')}
-        />
+        <View style={styles.gender}>
+            <Text>Gender: </Text>
+            <RadioButton
+                value="male"
+                status={ checked === 'male' ? 'checked' : 'unchecked' }
+                onPress={() => setChecked('male')}
+            /><Text>male</Text>
+            <RadioButton
+                value="female"
+                status={ checked === 'female' ? 'checked' : 'unchecked' }
+                onPress={() => setChecked('female')}
+            /><Text>female</Text>
+        </View>
         <Text>Age: </Text>
         <TextInput 
             style={styles.input}
@@ -76,6 +78,9 @@ const styles = StyleSheet.create({
     label: {
 
     },
+    gender: {
+        flexDirection: 'row',
+    }
 })
 
 export default AddPatient;
