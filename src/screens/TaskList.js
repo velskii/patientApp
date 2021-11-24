@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from "react-native";
-import ajax from "./src/ajax";
+import ajax from "../ajax";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -44,7 +44,7 @@ class TaskList extends React.Component {
                             <Text style={styles.taskIdDsiplay}>601</Text>
                             <Text style={styles.taskTimeDisplay}>{item.time}</Text>
                             <Text style={styles.taskNameDisplay}>{item.taskName}</Text>
-                            <Text style={styles.taskStatusDisplay}>{item.status}}</Text>
+                            <Text style={styles.taskStatusDisplay}>{item.status}</Text>
                         </View>
                     </TouchableOpacity>
 

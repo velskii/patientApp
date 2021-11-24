@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
-import ajax from "./src/ajax";
+import ajax from "../ajax";
 
 
 class TaskDetail extends React.Component {

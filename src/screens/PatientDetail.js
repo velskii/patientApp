@@ -1,6 +1,6 @@
 import React from "react";
 import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from "react-native";
-import ajax from "./src/ajax";
+import ajax from "../ajax";
 
 class PatientDetail extends React.Component {
     state = {

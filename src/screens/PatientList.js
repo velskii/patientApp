@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import ajax from "./src/ajax";
-import List from "./src/components/List";
-import SearchBar from "./src/components/SearchBar";
+import ajax from "../ajax";
+import List from "../components/List";
+import SearchBar from "../components/SearchBar";
 
 class PatientList extends React.Component {
     state = {

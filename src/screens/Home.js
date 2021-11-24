@@ -60,7 +60,7 @@ function Home({ navigation, route }) {
                     <View style={styles.info}>
                         <Image
                             style={{width: 100, height: 100, marginBottom: 20}}
-                            source={require('./assets/pharmaceutical-medical-symbol.jpeg')}
+                            source={require('../../assets/pharmaceutical-medical-symbol.jpeg')}
                         />
                         <Text>Please login to start your session.</Text>
                         <View style={styles.btn_login}>
@@ -85,46 +85,46 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
-        name="Home"
-        component={Home} 
-        options={{ title: 'Home' }}/>
+            name="Home"
+            component={Home} 
+            options={{ title: 'Home' }}/>
         <Stack.Screen 
-        name="Register" 
-        component={Register} 
-        options={{ title: 'Register' }}/>
+            name="Register" 
+            component={Register} 
+            options={{ title: 'Register' }}/>
         <Stack.Screen 
-        name="Login" 
-        component={Login}
-        options={{ title: 'Login' }}
-        initialParams={{ patientId: 42 }}/>
+            name="Login" 
+            component={Login}
+            options={{ title: 'Login' }}
+            initialParams={{ patientId: 42 }}/>
         <Stack.Screen 
-        name="TaskList" 
-        component={TaskList} 
-        options={{ title: 'Your Task List' }}/>
+            name="TaskList" 
+            component={TaskList} 
+            options={{ title: 'Your Task List' }}/>
         <Stack.Screen 
-        name="TaskDetail" 
-        component={TaskDetail} 
-        options={{ title: 'About this Task' }}/>
+            name="TaskDetail" 
+            component={TaskDetail} 
+            options={{ title: 'About this Task' }}/>
         <Stack.Screen 
-        name="AddPatient" 
-        component={AddPatient} 
-        options={{ title: 'Add New Patient' }}/>
+            name="AddPatient" 
+            component={AddPatient} 
+            options={{ title: 'Add New Patient' }}/>
         <Stack.Screen 
-        name="PatientList" 
-        component={PatientList} 
-        options={{ title: 'Patient List' }}/>
+            name="PatientList" 
+            component={PatientList} 
+            options={{ title: 'Patient List' }}/>
         <Stack.Screen 
-        name="PatientDetail" 
-        component={PatientDetail} 
-        options={{ title: 'Patient Detail' }}/>
+            name="PatientDetail" 
+            component={PatientDetail} 
+            options={{ title: 'Patient Detail' }}/>
         <Stack.Screen 
-        name="ClinicalRecords" 
-        component={ClinicalRecords} 
-        options={{ title: 'Clinical Records' }}/>
+            name="ClinicalRecords" 
+            component={ClinicalRecords} 
+            options={{ title: 'Clinical Records' }}/>
         <Stack.Screen 
-        name="AddClinicalRecords" 
-        component={AddClinicalRecords} 
-        options={{ title: 'Add New Clinical Records' }}/>
+            name="AddClinicalRecords" 
+            component={AddClinicalRecords} 
+            options={{ title: 'Add New Clinical Records' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
