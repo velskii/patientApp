@@ -1,46 +1,101 @@
-import * as React from 'react';
-import { Button, View, Text, TextInput, StyleSheet, Linking } from 'react-native';
-import Login from './Login';
+// import * as React from 'react';
+import React, {useState} from 'react';
+import { Button, View, Text, TextInput, StyleSheet, Linking, CheckBox, Alert } from 'react-native';
+import ajax from '../ajax';
+import { RadioButton } from 'react-native-paper';
 
 function Register({ navigation }) {
     const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [repeatPassword, setRepeatPassword] = React.useState('');
+    const [isSelected, setSelection] = useState(false);
+    const [checked, setChecked] = React.useState('doctor');
     return (
         <View style={styles.container}>
-            
-            <Text>User name</Text>
-            <TextInput 
-                style={styles.input}
-                placeholder="username"
-                value={username}
-                onChangeText={setUsername}
-             />
-            <Text>Password</Text>
-            <TextInput 
-                style={styles.input}
-                placeholder="password"
-            />
-            <Text>Repeat your Password</Text>
-            <TextInput 
-                style={styles.input}
-                placeholder="password"
-            />
-            <View style={styles.termLink}>
-                <Text>By signing up, you are agree to our </Text>
+            <View style={styles.header}>
+                <Text style={styles.headerText}>Register</Text>
+            </View>
+
+            <View style={styles.textSection}>
+                <Text  style={styles.label}>User name</Text>
+                <TextInput 
+                    style={styles.input}
+                    placeholder="username"
+                    value={username}
+                    onChangeText={setUsername}
+                />
+                <Text  style={styles.label}>Password</Text>
+                <TextInput 
+                    style={styles.input}
+                    placeholder="password"
+                    value={password}
+                    onChangeText={setPassword}
+                />
+                <Text  style={styles.label}>Repeat your Password</Text>
+                <TextInput 
+                    style={styles.input}
+                    placeholder="password"
+                    value={repeatPassword}
+                    onChangeText={setRepeatPassword}
+                />
+                <Text  style={styles.label}>Choose your position</Text>
+            </View>
+            <View style={styles.position}>
+                <RadioButton
+                    value="doctor"
+                    status={ checked === 'doctor' ? 'checked' : 'unchecked' }
+                    onPress={() => setChecked('doctor')}
+                />
+                <Text>doctor</Text>
+                <RadioButton
+                    value="nurse"
+                    status={ checked === 'nurse' ? 'checked' : 'unchecked' }
+                    onPress={() => setChecked('nurse')}
+                />
+                <Text>nurse</Text>
+            </View>
+            <View style={styles.terms}>
+                <CheckBox
+                    value={isSelected}
+                    onValueChange={setSelection}
+                    />
                 <Text style={{color: 'blue'}}
-                    onPress={() => Linking.openURL('http://google.com')}>Terms of Service and Privacy policy</Text>
+                    onPress={() => Linking.openURL('http://google.com')}>Agree with Terms and policy</Text>
+            </View>
+            <View style={styles.btnSection}>
+                <Button
+                    title="Register"
+                    onPress={async() => {
+                        if (password != repeatPassword) {
+                            Alert.alert("password not same with repeat password.",
+                            "",
+                            [
+                              { text: "OK", onPress: () => console.log("OK Pressed") }
+                            ]);
+                        } else {
+                            console.log(username)
+                            console.log(password)
+                            console.log(checked)
+                            const result = await ajax.register(username, password, checked);
+                            console.log(result)
+                            if (result !== undefined) {
+                                    Alert.alert("Register successfully.",
+                                "",
+                                [
+                                { text: "OK", onPress: () => {
+                                    navigation.navigate({
+                                        name: 'Login'
+                                    })
+                                } }
+                                ]);
+                            }
+                        } 
+                    }} />
             </View>
             
-            <Button
-                title="Register my account"
-                onPress={() => navigation.navigate({
-                    name: 'Login',
-                    params: { username: username },
-                    merge: true,
-                  })
-                } />
             <View style={styles.loginLink}>
-                <Text>Already hava an account? </Text>
-                <Text style={{color: 'blue'}}
+                <Text style={{fontSize: 18,}}>Already hava an account? </Text>
+                <Text style={{color: 'blue', fontSize: 20,}}
                         onPress={() => navigation.navigate({
                             name: 'Login',
                         })
@@ -53,21 +108,58 @@ function Register({ navigation }) {
 const styles = StyleSheet.create({
     container: { 
         flex: 1, 
-        alignItems: 'center', 
-        justifyContent: 'center' 
+        marginTop: 50,
+        paddingStart:20,
     },
-    input:{
-        padding: 10, 
-        backgroundColor: 'white'
+    header: {
+      alignItems: 'center', 
+    },
+    headerText: {
+      fontSize: 30,
+      color: 'green',
+    },
+    textSection: {
+      width: '80%',
+      height: '30%',
+      margin: 20,
+      marginTop: 50,
     },
     label: {
-
+        marginLeft: 20,
+        fontSize: 20,
+    },
+    input:{
+        padding: 10,
+        margin: 10,
+        backgroundColor: 'white',
+        borderColor: 'black',
+        borderWidth: 1,
+    },
+    position: {
+        marginTop: 60,
+        flexDirection: 'row',
+        padding: 10,
+        margin: 10,
+        alignItems: 'center',
+    },
+    terms: {
+        marginLeft: 60,
+        flexDirection: 'row',
+        width: '800%',
+        height: '3%',
+        alignItems: 'center',
+    },
+    btnSection: {
+        paddingTop: 20,
+        width: '100%',
+        height: '3%',
+        alignItems: 'center',
     },
     loginLink: {
-
-    },
-    termLink: {
-
+        marginTop: 40,
+        width: '100%',
+        height: '5%',
+        alignItems: 'center',
     },
 })
 

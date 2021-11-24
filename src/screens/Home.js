@@ -35,6 +35,10 @@ function Home({ navigation, route }) {
                 ? (<>
                     <View style={styles.info}>
                         <Text>Home Screen</Text>
+                        <Image
+                            style={{width: 100, height: 100, marginBottom: 20}}
+                            source={require('../../assets/pharmaceutical-medical-symbol.jpeg')}
+                        />
                         <Text>UserId: {route.params?.userId}</Text>
                         <Text>Username: {route.params?.username}</Text>
                     </View>

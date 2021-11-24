@@ -1,6 +1,43 @@
 // const apiHost='https://reactnative.dev';
 const apiHost = 'http://127.0.0.1:5000';
 export default {
+
+    async login(username, password){
+        try {
+            const response = await fetch(apiHost+'/users/login', 
+            {   method: 'POST',
+                body: JSON.stringify({
+                    userName: username,
+                    password: password,
+                })
+            });
+            const json = await response.json();
+            return json[0];
+          } catch (error) {
+            console.error(error);
+        }
+    },
+
+    async register(username, password, position){
+        var date = new Date().getDate();
+        var month = new Date().getMonth() + 1;
+        var year = new Date().getFullYear();
+        try {
+            const response = await fetch(apiHost+'/users/register', 
+            {   method: 'POST',
+                body: JSON.stringify({
+                    userName: username,
+                    password: password,
+                    position: position,
+                    created_time: year+'/'+month+'/'+date,
+                })
+            });
+            const json = await response.json();
+            return json;
+          } catch (error) {
+            console.error(error);
+        }
+    },
     
     async fetchInitialPatients(){
         try {
