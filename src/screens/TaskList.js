@@ -1,15 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from "react-native";
 import ajax from "../ajax";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 class TaskList extends React.Component {
     state = {
         tasks : [],
     };
     async componentDidMount() {
-        const tasks = await ajax.fetchTasks();
+        const { route } = this.props;
+        const tasks = await ajax.fetchTasks(route.params?.userId);
         console.log(tasks);
         this.setState({ tasks });
     }
@@ -17,39 +16,31 @@ class TaskList extends React.Component {
         const { navigation } = this.props;
         {
             return (
-                <View style={styles.container}>
+            <View style={styles.container}>
                 <View style={styles.tableHeader}>
-                <View style={styles.taskId}>
-                        <Text>Task ID</Text>
-                    </View>
-                    <View style={styles.time}>
-                        <Text>Time</Text>
-                    </View>
-                    <View style={styles.taskName}>
-                        <Text>Task Name</Text>
-                    </View>
-                    <View style={styles.TaskStatus}>
-                        <Text>Task Status</Text>
-                    </View>
+                    <Text style={styles.headerText}>Task ID</Text>
+                    <Text style={styles.headerText}>Time</Text>
+                    <Text style={styles.headerText}>Task Name</Text>
+                    <Text style={styles.headerText}>Task Status</Text>
                 </View>
+
                 <View style={styles.list}>
-                <FlatList
-                    data={this.state.tasks}
-                    renderItem={({item}) => 
-
-                    <TouchableOpacity onPress={() => navigation.navigate('TaskDetail', {
-                        taskId: item._id,
-                    })}>
-                        <View style={styles.info}>
-                            <Text style={styles.taskIdDsiplay}>601</Text>
-                            <Text style={styles.taskTimeDisplay}>{item.time}</Text>
-                            <Text style={styles.taskNameDisplay}>{item.taskName}</Text>
-                            <Text style={styles.taskStatusDisplay}>{item.status}</Text>
-                        </View>
-                    </TouchableOpacity>
-
-                    }
-                />
+                    <FlatList
+                        data={this.state.tasks}
+                        renderItem={({item}) => 
+                        <TouchableOpacity onPress={() => navigation.navigate('TaskDetail', {
+                            taskId: item._id,
+                        })}>
+                            <View style={styles.info}>
+                                <Text style={styles.taskIdDsiplay}>{
+                                item._id.substring(1, 8)
+                                }</Text>
+                                <Text style={styles.taskTimeDisplay}>{item.time}</Text>
+                                <Text style={styles.taskNameDisplay}>{item.taskName}</Text>
+                                <Text style={styles.taskStatusDisplay}>{item.status}</Text>
+                            </View>
+                        </TouchableOpacity>}
+                    />
             </View>
             </View>
             );
@@ -59,34 +50,24 @@ class TaskList extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        // justifyContent: "center",
-        // alignItems: "center"
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
     },
     tableHeader: {
-        flex: 10,
-        fontSize:40,
+        marginTop: 30,
+        width: '100%',
         flexDirection: 'row',
-        justifyContent:'space-around',
         textAlign: 'center',
+        justifyContent: 'space-evenly',
     },
-    taskId: {
-        backgroundColor: 'purple',
-        width: '25%',
-    },
-    time: {
-        backgroundColor: 'powderblue',
-        width: '25%',
-    },
-    taskName: {
-        backgroundColor: 'skyblue',
-        width: '25%',
-    },
-    TaskStatus: {
-        backgroundColor: 'steelblue',
-        width: '25%',
+    headerText: {
+        fontSize:22,
     },
     list: {
+        marginTop: 30,
+        borderTopColor: 'red',
+        borderTopWidth: 2,
         backgroundColor: '#ddd',
         flex: 97,
         width: "100%",

@@ -8,6 +8,7 @@ import Login from './Login';
 import AddPatient from './AddPatient';
 import PatientList from './PatientList';
 import PatientDetail from './PatientDetail';
+import CreateTask from './CreateTask';
 import TaskList from './TaskList';
 import TaskDetail from './TaskDetail';
 import ClinicalRecords from './ClinicalRecords';
@@ -51,12 +52,12 @@ function Home({ navigation, route }) {
                         <Text>loginToken: {route.params?.loginToken}</Text>
                     </View>
                     <View style={styles.btn_group}>
-                        <View style={styles.patientList}>
+                        <View style={styles.taskList}>
                             <TouchableOpacity
                             onPress={() => navigation.navigate('TaskList', {
-                                patientId: 86,
+                                userId: route.params?.userId,
                             })}>
-                                <Text style={styles.textColor}>Your Task List</Text>
+                                <Text style={styles.textColor}>Task List</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.patientList}>
@@ -66,6 +67,20 @@ function Home({ navigation, route }) {
                             </TouchableOpacity>
                         </View>
                     </View>
+                    { 
+                     (route.params?.position == 'administrator') ?  <View style={styles.btn_group}>
+                            <View style={styles.createTaskBtn}>
+                                <TouchableOpacity
+                                onPress={() => navigation.navigate('CreateTask', {
+                                    userId: route.params?.userId,
+                                })}>
+                                    <Text style={styles.textColor}>create a task</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    :   <View></View>
+                    }
+                    
 
                     </>) 
                 : (<>
@@ -109,6 +124,10 @@ function App() {
             component={Login}
             options={{ title: 'Login' }}
             initialParams={{ patientId: 42 }}/>
+        <Stack.Screen 
+            name="CreateTask" 
+            component={CreateTask} 
+            options={{ title: 'Create a Task' }}/>
         <Stack.Screen 
             name="TaskList" 
             component={TaskList} 
@@ -179,6 +198,30 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 10,
         justifyContent: 'space-around',
+    },
+    createTaskBtn: {
+        marginTop: 50,
+        color: '#FFC745',
+        height: 70,
+        width: "auto",
+        backgroundColor: '#005C5B',
+        textAlign: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#FFC745',
+        borderRadius: 20
+    },
+    taskList: {
+        marginTop: 50,
+        color: '#FFC745',
+        height: 70,
+        width: "auto",
+        backgroundColor: '#005C5B',
+        textAlign: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#FFC745',
+        borderRadius: 20
     },
     patientList: {
         marginTop: 50,

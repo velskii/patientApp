@@ -68,9 +68,28 @@ export default {
             console.error(error);
         }
     },
-    async fetchTasks(){
+    async createTask(userId, taskName, taskTime, taskStatus, ){
         try {
-            const response = await fetch(apiHost+'/users/101/tasks');
+            console.log(taskName)
+            console.log(taskTime)
+            console.log(taskStatus)
+            const response = await fetch(apiHost+'/users/'+userId+'/tasks', 
+            {   method: 'POST',
+                body: JSON.stringify({
+                    taskName: taskName,
+                    time: taskTime,
+                    status: taskStatus,
+                })
+            });
+            const json = await response.json();
+            return json;
+          } catch (error) {
+            console.error(error);
+        }
+    },
+    async fetchTasks(userId){
+        try {
+            const response = await fetch(apiHost+'/users/'+userId+'/tasks');
             const json = await response.json();
             return json;
           } catch (error) {
