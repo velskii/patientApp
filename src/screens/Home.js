@@ -22,10 +22,13 @@ function Home({ navigation, route }) {
         if (route.params?.userId) {
             console.log("userId is "+route.params?.userId)
         }
-        if (route.params?.patientId) {
-            console.log("patientId is "+route.params?.patientId)
+        if (route.params?.loginToken) {
+            console.log("loginToken is "+route.params?.loginToken)
         }
-    }, [route.params?.username, route.params?.userId, route.params?.patientId]);
+        if (route.params?.position) {
+            console.log("position is "+route.params?.position)
+        }
+    }, [route.params?.username, route.params?.userId, route.params?.position, route.params?.loginToken]);
   
     return (
         <View style={styles.container}>
@@ -33,14 +36,19 @@ function Home({ navigation, route }) {
             {
                 route.params?.username.length > 0 
                 ? (<>
+                    <View style={styles.header}>
+                        <Text  style={styles.headerText}>Home Screen</Text>
+                    </View>
+
                     <View style={styles.info}>
-                        <Text>Home Screen</Text>
                         <Image
                             style={{width: 100, height: 100, marginBottom: 20}}
                             source={require('../../assets/pharmaceutical-medical-symbol.jpeg')}
                         />
                         <Text>UserId: {route.params?.userId}</Text>
                         <Text>Username: {route.params?.username}</Text>
+                        <Text>position: {route.params?.position}</Text>
+                        <Text>loginToken: {route.params?.loginToken}</Text>
                     </View>
                     <View style={styles.btn_group}>
                         <View style={styles.patientList}>
@@ -137,7 +145,16 @@ function App() {
 const styles = StyleSheet.create({
     container: { 
         flex: 1,
-        backgroundColor: "#FDFFB7"
+        backgroundColor: "#FDFFB7",
+        paddingStart:20,
+    },
+    header: {
+        marginTop: 50,
+        alignItems: 'center', 
+    },
+    headerText: {
+        fontSize: 30,
+        color: 'green',
     },
     info: {
         alignItems: 'center', 

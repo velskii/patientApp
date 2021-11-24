@@ -37,7 +37,9 @@ function Login({ route, navigation }) {
               name: 'Home',
               params: { 
                 userId: user.userId, 
-                username: user.userName },
+                username: user.userName,
+                position: user.position,
+                loginToken: user.login_token,},
               merge: true,})
             }
             
