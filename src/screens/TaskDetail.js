@@ -1,59 +1,62 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
-import PropTypes from "prop-types";
 import ajax from "../ajax";
 
 
 class TaskDetail extends React.Component {
-    
-    // static propTypes = {
-    //     taskId: PropTypes.array.isRequired,
-    // }
     state = {
         taskDetail : [],
     };
     async componentDidMount() {
         const { route } = this.props;
-        const taskDetail = await ajax.fetchTaskDetail(route.params?.taskId);
+        const taskDetail = await ajax.fetchTaskDetail(route.params?.taskId, route.params?.userId);
         // console.log(taskDetail);
         this.setState({ taskDetail });
     }
     render () {
         const { navigation } = this.props;
+        const { route } = this.props;
         {
             return (
                 <View style={styles.container}>
-                    <View style={styles.info}>
-                    <View>
-                        <Text>Task ID: {this.state.taskDetail._id}</Text>
+                    <View style={styles.textSection}>
+                        <Text style={styles.label}>Task ID: {this.state.taskDetail._id}</Text>
                     </View>
-                    <View>
-                        <Text>Task Name: {this.state.taskDetail.taskName}</Text>
+                    <View style={styles.textSection}>
+                        <Text style={styles.label}>Task Name: {this.state.taskDetail.taskName}</Text>
                     </View>
-                    <View>
-                        <Text>Time: 10:00 AM</Text>
+                    <View style={styles.textSection}>
+                        <Text style={styles.label}>Time: {this.state.taskDetail.time}</Text>
                     </View>
-                    <View>
-                        <Text>Proority: High</Text>
+                    <View style={styles.priority}>
+                        <Text style={styles.label}>Priority: normal</Text>
                     </View>
-                    <View>
-                        <Text>Where did the patient have pain?</Text>
-                        <Text>butt</Text>
-                        <Text>shoulder</Text>
-                        <Text>head</Text>
+                    <View style={styles.textSection}>
+                        <Text style={styles.label}>Task Status: {this.state.taskDetail.status}</Text>
                     </View>
-                    <View>
-                        <Text>How long has the pain last?</Text>
-                        <Text>1 day</Text>
-                        <Text>1 week</Text>
-                        <Text>1 month</Text>
+                    <View style={styles.btnSection}>
+                        <Button 
+                        title='Delete' 
+                        onPress={async() => {
+                            const result = await ajax.deleteTask(route.params?.taskId, route.params?.userId);
+                            console.log(result)
+                            if (result !== undefined) {
+                                alert(
+                                    "deleted successfully.",
+                                    "",
+                                    [
+                                    { text: "OK", onPress: () => navigation.navigate('TaskList', {
+                                        userId: route.params?.userId,
+                                        })
+                                    }
+                                    ]
+                                )
+                            }
+                        }}/>
+                        <Button title='Task List' onPress={()=>navigation.navigate('TaskList', {
+                                        userId: route.params?.userId,
+                                        })}/>
                     </View>
-                    </View>
-                    <TouchableOpacity
-                        style={styles.btn}
-                            onPress={() => navigation.navigate('TaskList')}>
-                                <Text>Submit</Text>
-                    </TouchableOpacity>
                 </View>
             );
         }
@@ -64,26 +67,36 @@ const styles = StyleSheet.create({
     container: {
         flex: 1, 
         flexDirection: 'column',
-        justifyContent: 'center',
-        textAlign: 'center',
+        paddingStart:20,
+        marginTop: 40,
+    },
+    textSection: {
+        margin: 10,
+        flexDirection: 'row',
+    },
+    textInput: { 
+        height: 40, 
+        borderColor: 'gray', 
+        borderWidth: 1 ,
+    },
+    label: {
+        marginLeft: 20,
+        fontSize: 20,
+    },
+    priority: {
+        flexDirection: 'row',
+        padding: 10,
         alignItems: 'center',
     },
-    info: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-evenly',
-        alignItems: 'flex-start',
+    status: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
     },
-    btn: {
+    btnSection: {
         marginTop: 50,
-        paddingTop: 10,
-        height: 50,
-        width: 100,
-        backgroundColor: 'lightblue',
-        textAlign: 'center',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'black',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
     },
 });
 

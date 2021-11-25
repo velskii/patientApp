@@ -14,6 +14,7 @@ class TaskList extends React.Component {
     }
     render () {
         const { navigation } = this.props;
+        const { route } = this.props;
         {
             return (
             <View style={styles.container}>
@@ -30,6 +31,7 @@ class TaskList extends React.Component {
                         renderItem={({item}) => 
                         <TouchableOpacity onPress={() => navigation.navigate('TaskDetail', {
                             taskId: item._id,
+                            userId: route.params?.userId,
                         })}>
                             <View style={styles.info}>
                                 <Text style={styles.taskIdDsiplay}>{

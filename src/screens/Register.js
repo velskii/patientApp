@@ -79,15 +79,10 @@ function Register({ navigation }) {
                             const result = await ajax.register(username, password, checked);
                             console.log(result)
                             if (result !== undefined) {
-                                    Alert.alert("Register successfully.",
-                                "",
-                                [
-                                { text: "OK", onPress: () => {
+                                    alert("Register successfully.","",[{ text: "OK", onPress: () => {}}]);
                                     navigation.navigate({
                                         name: 'Login'
                                     })
-                                } }
-                                ]);
                             }
                         } 
                     }} />
