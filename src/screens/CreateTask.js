@@ -89,7 +89,7 @@ function CreateTask({ route, navigation }) {
                     const task = await ajax.createTask(route.params?.userId, taskName, taskTime, status);
                     console.log(task)
                     if (task === undefined) {
-                        Alert.alert(
+                        alert(
                             "create failed, please try later.",
                             "",
                             [
@@ -97,6 +97,13 @@ function CreateTask({ route, navigation }) {
                             ]
                           )
                     }else {
+                        alert(
+                            "create successfully.",
+                            "",
+                            [
+                              { text: "OK", onPress: () => console.log("OK Pressed") }
+                            ]
+                          )
                         navigation.navigate('TaskList', {
                             userId: route.params?.userId,
                         })

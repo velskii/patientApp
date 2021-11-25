@@ -53,6 +53,12 @@ function Register({ navigation }) {
                     onPress={() => setChecked('nurse')}
                 />
                 <Text>nurse</Text>
+                <RadioButton
+                    value="administrator"
+                    status={ checked === 'administrator' ? 'checked' : 'unchecked' }
+                    onPress={() => setChecked('administrator')}
+                />
+                <Text>administrator</Text>
             </View>
             <View style={styles.terms}>
                 <CheckBox
