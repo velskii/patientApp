@@ -1,3 +1,6 @@
+import AddPatient from "./screens/AddPatient";
+import axios from 'axios';
+
 // const apiHost='https://reactnative.dev';
 const apiHost = 'http://127.0.0.1:5000';
 export default {
@@ -122,7 +125,27 @@ export default {
           } catch (error) {
             console.error(error);
         }
+    },
+    async addPatient(firstName, lastName, age, gender, healthInsuranceNo, phoneNo, email){
+        try {
+            const response = await fetch(apiHost+'/patients', 
+            {   method: 'POST',
+                body: JSON.stringify({
+                    firstName: firstName,
+                    lastName: lastName,
+                    age: age,
+                    gender: gender,
+                    healthInsuranceNo: healthInsuranceNo,
+                    phoneNo : phoneNo,
+                    email: email
+                })
+            });
+            const json = await response.json();
+            console.log(json);
+            return json;
+          } catch (error) {
+            console.log(error.message);
+        }
     }
-
 
 };
