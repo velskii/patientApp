@@ -9,9 +9,13 @@ export default {
         try {
             const response = await fetch(apiHost+'/users/login', 
             {   method: 'POST',
-                body: JSON.stringify({
-                    userName: username,
-                    password: password,
+                headers: {
+                    'Accept': 'application/json; charset=utf-8',
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: new URLSearchParams({
+                    'userName': username,
+                    'password': password,
                 })
             });
             const json = await response.json();
@@ -28,11 +32,15 @@ export default {
         try {
             const response = await fetch(apiHost+'/users/register', 
             {   method: 'POST',
-                body: JSON.stringify({
-                    userName: username,
-                    password: password,
-                    position: position,
-                    created_time: year+'/'+month+'/'+date,
+                headers: {
+                    'Accept': 'application/json; charset=utf-8',
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: new URLSearchParams({
+                    'userName': username,
+                    'password': password,
+                    'position': position,
+                    'created_time': year+'/'+month+'/'+date,
                 })
             });
             const json = await response.json();
