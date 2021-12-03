@@ -138,7 +138,11 @@ export default {
         try {
             const response = await fetch(apiHost+'/patients', 
             {   method: 'POST',
-                body: JSON.stringify({
+                headers: {
+                    'Accept': 'application/json; charset=utf-8',
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: new URLSearchParams({
                     firstName: firstName,
                     lastName: lastName,
                     age: age,
