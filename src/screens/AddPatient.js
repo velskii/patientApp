@@ -71,7 +71,7 @@ function AddPatient({ route, navigation }) {
         <Text>Email: </Text>
         <TextInput 
             style={styles.input}
-            placeholder="123@gmail.com"
+            placeholder="abc@gmail.com"
             value={email}
             onChangeText={setEmail}
         />
