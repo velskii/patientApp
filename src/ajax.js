@@ -1,5 +1,3 @@
-import AddPatient from "./screens/AddPatient";
-import axios from 'axios';
 
 // const apiHost='https://reactnative.dev';
 const apiHost = 'http://127.0.0.1:5000';
@@ -86,7 +84,11 @@ export default {
             console.log(taskStatus)
             const response = await fetch(apiHost+'/users/'+userId+'/tasks', 
             {   method: 'POST',
-                body: JSON.stringify({
+                headers: {
+                    'Accept': 'application/json; charset=utf-8',
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: new URLSearchParams({
                     taskName: taskName,
                     time: taskTime,
                     status: taskStatus,
