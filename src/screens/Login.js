@@ -23,7 +23,7 @@ function Login({ route, navigation }) {
             const user = await ajax.login(username, password);
             console.log(user)
             if (user === undefined) {
-              Alert.alert(
+              alert(
                 "username doesn't exist or password is not right.",
                 "",
                 [

@@ -44,13 +44,11 @@ class TaskDetail extends React.Component {
                                 alert(
                                     "deleted successfully.",
                                     "",
-                                    [
-                                    { text: "OK", onPress: () => navigation.navigate('TaskList', {
-                                        userId: route.params?.userId,
-                                        })
-                                    }
-                                    ]
+                                    [{ text: "OK", onPress:{}}]
                                 )
+                                navigation.navigate('TaskList', {
+                                userId: route.params?.userId,
+                                })
                             }
                         }}/>
                         <Button title='Task List' onPress={()=>navigation.navigate('TaskList', {

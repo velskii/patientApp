@@ -61,10 +61,6 @@ function Register({ navigation }) {
                 <Text>administrator</Text>
             </View>
             <View style={styles.terms}>
-                <CheckBox
-                    value={isSelected}
-                    onValueChange={setSelection}
-                    />
                 <Text style={{color: 'blue'}}
                     onPress={() => Linking.openURL('http://google.com')}>Agree with Terms and policy</Text>
             </View>
@@ -72,8 +68,14 @@ function Register({ navigation }) {
                 <Button
                     title="Register"
                     onPress={async() => {
-                        if (password != repeatPassword) {
-                            Alert.alert("password not same with repeat password.",
+                        if (password.length < 6) {
+                            alert("password's length should >= 6.",
+                            "",
+                            [
+                              { text: "OK", onPress: {} }
+                            ]);
+                        } else if (password != repeatPassword) {
+                            alert("password not same with repeat password.",
                             "",
                             [
                               { text: "OK", onPress: () => console.log("OK Pressed") }
