@@ -145,8 +145,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     btnSection: {
-        height: '3%',
-        alignItems: 'center',
+        height: '10%',
     },
 });
 

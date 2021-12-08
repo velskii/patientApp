@@ -76,11 +76,8 @@ export default {
             console.log(taskStatus)
             const response = await fetch(apiHost+'/users/'+userId+'/tasks', 
             {   method: 'POST',
-                headers: {
-                    'Accept': 'application/json; charset=utf-8',
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                },
-                body: new URLSearchParams({
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
                     taskName: taskName,
                     time: taskTime,
                     status: taskStatus,
