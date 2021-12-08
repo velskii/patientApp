@@ -111,7 +111,6 @@ function Register({ navigation }) {
 const styles = StyleSheet.create({
     container: { 
         flex: 1, 
-        marginTop: 50,
         paddingStart:20,
     },
     header: {
@@ -125,7 +124,6 @@ const styles = StyleSheet.create({
       width: '80%',
       height: '30%',
       margin: 20,
-      marginTop: 50,
     },
     label: {
         marginLeft: 20,
@@ -139,7 +137,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     position: {
-        marginTop: 60,
+        marginTop: 80,
         flexDirection: 'row',
         padding: 10,
         margin: 10,
@@ -153,13 +151,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     btnSection: {
-        paddingTop: 20,
+        paddingTop: 5,
         width: '100%',
-        height: '3%',
+        height: '6%',
         alignItems: 'center',
     },
     loginLink: {
-        marginTop: 40,
+        marginTop: 20,
         width: '100%',
         height: '5%',
         alignItems: 'center',
