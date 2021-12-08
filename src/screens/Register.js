@@ -61,10 +61,6 @@ function Register({ navigation }) {
                 <Text>administrator</Text>
             </View>
             <View style={styles.terms}>
-                <CheckBox
-                    value={isSelected}
-                    onValueChange={setSelection}
-                    />
                 <Text style={{color: 'blue'}}
                     onPress={() => Linking.openURL('http://google.com')}>Agree with Terms and policy</Text>
             </View>
