@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import ajax from "../ajax";
-import List from "../components/List";
+import Item from "../components/Item";
 import SearchBar from "../components/SearchBar";
 
 class PatientList extends React.Component {
@@ -20,7 +20,6 @@ class PatientList extends React.Component {
     }
     async componentDidMount() {
         const patients = await ajax.fetchInitialPatients();
-        // console.log(patients);
         this.setState({ patients });
     }
     setCurrentPatient = (patientId) => {
@@ -49,7 +48,6 @@ class PatientList extends React.Component {
                     <View>
                       <View style={styles.searchbar}>
                           <SearchBar />
-                      {/* <View style={styles.newPatient}> */}
                           <TouchableOpacity
                               onPress={() => navigation.navigate('AddPatient', {
                                   patientId: 86,
@@ -57,10 +55,14 @@ class PatientList extends React.Component {
                               })}>
                               <Text style={{textAlign:"right", color: "blue", marginTop: 10, textAlign: "right"}}>Add a Patient</Text>
                           </TouchableOpacity>
-                          {/* </View> */}
+                          
                           </View>
                           <View style={styles.main}>
-                              <List patients={this.state.patients} onItemPress={this.setCurrentPatient} />
+                              <FlatList
+                                    data={this.state.patients}
+                                    renderItem={({item}) => 
+                                    <Item patient={item} onPress={this.setCurrentPatient} />}
+                                />
                           </View>
                     </View>
                   );
