@@ -16,14 +16,14 @@ function AddPatient({ route, navigation }) {
     return (
       <View style={styles.container}>
         {/* <Text>patientId: {JSON.stringify(patientId)}</Text> */}
-        <form>
+        
         <Text>First Name: </Text>
         <TextInput 
             style={styles.input}
             placeholder="First Name"
             value={firstName}
             onChangeText={setFirstName}
-        /><br/>
+        />
         <Text>Last Name: </Text>
         <TextInput 
             style={styles.input}
@@ -51,7 +51,7 @@ function AddPatient({ route, navigation }) {
             value={age}
             onChangeText={setAge}
         />
-        <br/>
+        
         <Text>Health Insurance Number: </Text>
         <TextInput 
             style={styles.input}
@@ -59,7 +59,7 @@ function AddPatient({ route, navigation }) {
             value={healthInsuranceNo}
             onChangeText={setHealthInsuranceNo}
         />
-        <br/>
+        
         <Text>Phone Number: </Text>
         <TextInput 
             style={styles.input}
@@ -67,7 +67,7 @@ function AddPatient({ route, navigation }) {
             value={phoneNo}
             onChangeText={setPhoneNo}
         />
-        <br/>
+        
         <Text>Email: </Text>
         <TextInput 
             style={styles.input}
@@ -79,9 +79,14 @@ function AddPatient({ route, navigation }) {
         <Button title="Submit" 
                 onPress={async() => {
                 const result = await ajax.addPatient(firstName, lastName, age, checked, healthInsuranceNo, phoneNo, email);
-                if (result !== undefined) {
-                    
-                    alert("Add a new patient successfully!");
+                if (result) {
+                    Alert.alert(
+                        "Add a new patient successfully!",
+                        "",
+                        [
+                          { text: "OK", onPress: () => console.log("OK Pressed") }
+                        ]
+                      )
                     navigation.reset({
                         index: 0,
                         routes: [{ name: "PatientList" }],
@@ -90,7 +95,7 @@ function AddPatient({ route, navigation }) {
                 }       
             }}
         />
-        </form>
+        
       </View>
     );
   }

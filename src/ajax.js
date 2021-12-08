@@ -133,25 +133,23 @@ export default {
     },
     async addPatient(firstName, lastName, age, gender, healthInsuranceNo, phoneNo, email){
         try {
-            const response = await fetch(apiHost+'/patients', 
-            {   method: 'POST',
-                headers: {
-                    'Accept': 'application/json; charset=utf-8',
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                },
-                body: new URLSearchParams({
-                    firstName: firstName,
-                    lastName: lastName,
-                    age: age,
-                    gender: gender,
-                    healthInsuranceNo: healthInsuranceNo,
-                    phoneNo : phoneNo,
-                    email: email
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    'firstName': firstName, 
+                    'lastName': lastName,
+                    'age': age,
+                    'gender': gender,
+                    'healthInsuranceNo': healthInsuranceNo,
+                    'phoneNo': phoneNo,
+                    'email': email
                 })
-            });
-            const json = await response.json();
-            console.log(json);
-            return json;
+            };
+            const response = await fetch(apiHost+'/patients', requestOptions);
+            const data = await response.json();
+
+            return data;
           } catch (error) {
             console.log(error.message);
         }
