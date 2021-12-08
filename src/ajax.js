@@ -5,19 +5,14 @@ export default {
 
     async login(username, password){
         try {
-            const response = await fetch(apiHost+'/users/login', 
-            {   method: 'POST',
-                headers: {
-                    'Accept': 'application/json; charset=utf-8',
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                },
-                body: new URLSearchParams({
-                    'userName': username,
-                    'password': password,
-                })
-            });
-            const json = await response.json();
-            return json[0];
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 'userName': username, 'password': password })
+            };
+            const response = await fetch(apiHost+'/users/login', requestOptions);
+            const data = await response.json();
+            return data[0];
           } catch (error) {
             console.error(error);
         }
