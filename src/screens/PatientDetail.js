@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from "react-native";
+import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList, Alert} from "react-native";
 import ajax from "../ajax";
 
 class PatientDetail extends React.Component {
@@ -52,8 +52,50 @@ class PatientDetail extends React.Component {
                             <TouchableOpacity style={styles.clinicalBtn} onPress={() => this.props.navigation.navigate('ClinicalRecords', {
                             patientId: item._id,
                             })} >
-                                <Text style={styles.labelBtn}>Clinical Records</Text>
+                                <Text style={styles.btnClinicalRecords}>View Clinical Records</Text>
                             </TouchableOpacity>
+
+                            <View style={styles.clinicalBtn}>
+                                <TouchableOpacity
+                                title='Delete'
+                                onPress={async() => {
+                                    return Alert.alert(
+                                        "Are your sure?",
+                                        "Are you sure you want to delete this patient?",
+                                        [
+                                          // The "Yes" button
+                                          {
+                                            text: "Yes",
+                                            onPress: () => {
+                                                const result = ajax.deletePatient(item._id);
+                                                console.log(result)
+                                                if (result !== undefined) {
+                                                    Alert.alert(
+                                                        "Delete this patient successfully!",
+                                                        "",
+                                                        [
+                                                          { text: "OK", onPress: () => console.log("OK Pressed") }
+                                                        ]
+                                                      )
+                                                      this.props.navigation.reset({
+                                                        index: 0,
+                                                        routes: [{ name: "PatientList" }],
+                                                      });
+                                                }
+                                            },
+                                          },
+                                          // The "No" button
+                                          // Does nothing but dismiss the dialog when tapped
+                                          {
+                                            text: "No",
+                                          },
+                                        ]
+                                      );
+                                }}>
+                                    <Text style={styles.btnDeletePatient}>Delete this patient</Text>
+                                </TouchableOpacity>
+                            </View>
+
                         </View>
                     {
                         patient.user && (<View>
@@ -126,8 +168,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         margin: 15
     },
-    labelBtn: {
+    btnClinicalRecords: {
         color: "#1c42eb",
+        textAlign: "center",
+        fontWeight:"bold"
+    },
+    btnDeletePatient: {
+        color: "#D32F2F",
+        textAlign: "center",
+        fontWeight: "bold"
     },
     avatar: {
         width: 60,

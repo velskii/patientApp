@@ -147,6 +147,16 @@ export default {
           } catch (error) {
             console.log(error.message);
         }
+    },
+    async deletePatient(patientId){
+        try {
+            const response = await fetch(apiHost+'/patients/'+patientId, {  method: 'DELETE' });
+            const json = await response.json();
+            
+            return json;
+          } catch (error) {
+            console.error(error);
+        }
     }
 
 };
