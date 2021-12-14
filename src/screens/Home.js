@@ -13,6 +13,7 @@ import TaskList from './TaskList';
 import TaskDetail from './TaskDetail';
 import ClinicalRecords from './ClinicalRecords';
 import AddClinicalRecords from './AddClinicalRecords';
+import TaskUpdate from './TaskUpdate';
 
 
 function Home({ navigation, route }) {
@@ -136,6 +137,10 @@ function App() {
             name="TaskDetail" 
             component={TaskDetail} 
             options={{ title: 'About this Task' }}/>
+        <Stack.Screen 
+            name="TaskUpdate" 
+            component={TaskUpdate} 
+            options={{ title: 'Update this Task' }}/>
         <Stack.Screen 
             name="AddPatient" 
             component={AddPatient} 

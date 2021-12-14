@@ -98,6 +98,23 @@ export default {
             console.error(error);
         }
     },
+    async updateTask( taskId, userId, taskName, taskTime, taskStatus ){
+        try {
+            const response = await fetch(apiHost+'/users/'+userId+'/tasks/' + taskId, {   method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                taskName: taskName,
+                time: taskTime,
+                status: taskStatus,
+            })
+        });
+
+            const json = await response.json();
+            return json;
+          } catch (error) {
+            console.error(error);
+        }
+    },
     async fetchTasks(userId){
         try {
             const response = await fetch(apiHost+'/users/'+userId+'/tasks');
@@ -111,7 +128,7 @@ export default {
         try {
             const response = await fetch(apiHost+'/users/'+userId+'/tasks/' + taskId);
             const json = await response.json();
-            return json[0];
+            return json;
           } catch (error) {
             console.error(error);
         }

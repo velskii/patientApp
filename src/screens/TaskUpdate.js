@@ -1,11 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Button, TouchableOpacity, TextInput } from "react-native";
 import ajax from "../ajax";
 
 
-class TaskDetail extends React.Component {
+class TaskUpdate extends React.Component {
     state = {
         taskDetail : [],
+        taskNameInput: "",
+        taskTimeInput: "",
+        taskStatusInput: "",
+        taskPriorityInput: ""
     };
     async componentDidMount() {
         const { route } = this.props;
@@ -16,6 +20,7 @@ class TaskDetail extends React.Component {
     render () {
         const { navigation } = this.props;
         const { route } = this.props;
+        var taskNameInput = this.state.taskNameInput
         {
             return (
                 <View style={styles.container}>
@@ -23,46 +28,60 @@ class TaskDetail extends React.Component {
                         <Text style={styles.label}>Task ID: {this.state.taskDetail._id}</Text>
                     </View>
                     <View style={styles.textSection}>
-                        <Text style={styles.label}>Task Name: {this.state.taskDetail.taskName}</Text>
+                        <Text style={styles.label}>Task Name: </Text>
+                        <TextInput style={styles.input} 
+                        placeholder={this.state.taskDetail.taskName} 
+                        onChangeText={value => {
+                            this.state.taskNameInput=value
+                        }}/>
                     </View>
                     <View style={styles.textSection}>
-                        <Text style={styles.label}>Time: {this.state.taskDetail.time}</Text>
+                        <Text style={styles.label}>Time: </Text>
+                        <TextInput style={styles.input} placeholder={this.state.taskDetail.time} 
+                        onChangeText={value => {
+                            this.state.taskTimeInput=value
+                        }}/>
                     </View>
                     <View style={styles.priority}>
-                        <Text style={styles.label}>Priority: normal</Text>
+                        <Text style={styles.label}>Priority:</Text>
+                        <TextInput style={styles.input} placeholder="normal" 
+                        onChangeText={value => {
+                            this.state.taskPriorityInput=value
+                        }}
+                        />
                     </View>
                     <View style={styles.textSection}>
-                        <Text style={styles.label}>Task Status: {this.state.taskDetail.status}</Text>
+                        <Text style={styles.label}>Task Status: </Text>
+                        <TextInput style={styles.input} placeholder={this.state.taskDetail.status} 
+                        onChangeText={value => {
+                            this.state.taskStatusInput=value
+                        }}
+                        />
                     </View>
+
                     <View style={styles.btnSection}>
                         <Button 
-                        title='Delete' 
+                        title='Update' 
                         onPress={async() => {
-                            const result = await ajax.deleteTask(route.params?.taskId, route.params?.userId);
-                            console.log(result)
+                        
+                            const result = await ajax.updateTask(route.params?.taskId, route.params?.userId, this.state.taskNameInput, this.state.taskTimeInput, this.state.taskStatusInput );
                             if (result !== undefined) {
                                 alert(
-                                    "deleted successfully.",
+                                    "update successfully.",
                                     "",
                                     [{ text: "OK", onPress:{}}]
                                 )
                                 navigation.navigate('TaskList', {
                                 userId: route.params?.userId,
+                                sth: "nothing"
                                 })
                             }
                         }}/>
-                        <Button 
-                        title='Update' 
-                        onPress={async() => {
-                            navigation.navigate('TaskUpdate', {
-                                userId: route.params?.userId,
-                                taskId: route.params?.taskId
-                            })
-                        }}/>
-                        <Button title='Task List' onPress={()=>navigation.navigate('TaskList', {
+                        <Button title='TaskList' onPress={()=>navigation.navigate('TaskList', {
                                         userId: route.params?.userId,
                                         })}/>
                     </View>
+                    
                 </View>
             );
         }
@@ -89,6 +108,13 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         fontSize: 20,
     },
+    input:{
+        padding: 10,
+        margin: 10,
+        backgroundColor: 'white',
+        borderColor: 'black',
+        borderWidth: 1,
+    },
     priority: {
         flexDirection: 'row',
         padding: 10,
@@ -106,4 +132,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default TaskDetail;
+export default TaskUpdate;
