@@ -29,6 +29,7 @@ function Register({ navigation }) {
                     style={styles.input}
                     placeholder="password"
                     value={password}
+                    secureTextEntry={true}
                     onChangeText={setPassword}
                 />
                 <Text  style={styles.label}>Repeat your Password</Text>
@@ -36,6 +37,7 @@ function Register({ navigation }) {
                     style={styles.input}
                     placeholder="password"
                     value={repeatPassword}
+                    secureTextEntry={true}
                     onChangeText={setRepeatPassword}
                 />
                 <Text  style={styles.label}>Choose your position</Text>

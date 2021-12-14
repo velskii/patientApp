@@ -15,7 +15,7 @@ function Login({ route, navigation }) {
           <Text style={styles.label}>Username</Text>
           <TextInput style={styles.input} placeholder="username" value={username} onChangeText={setUsername}/>
           <Text style={styles.label}>Password</Text>
-          <TextInput style={styles.input} placeholder="password" value={password} onChangeText={setPassword}/>
+          <TextInput style={styles.input} placeholder="password" value={password} secureTextEntry={true} onChangeText={setPassword}/>
         </View>
 
         <View style={styles.btnSection}>
