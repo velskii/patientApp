@@ -30,21 +30,21 @@ class TaskUpdate extends React.Component {
                     <View style={styles.textSection}>
                         <Text style={styles.label}>Task Name: </Text>
                         <TextInput style={styles.input} 
-                        placeholder={this.state.taskDetail.taskName} 
+                        defaultValue={this.state.taskDetail.taskName} 
                         onChangeText={value => {
                             this.state.taskNameInput=value
                         }}/>
                     </View>
                     <View style={styles.textSection}>
                         <Text style={styles.label}>Time: </Text>
-                        <TextInput style={styles.input} placeholder={this.state.taskDetail.time} 
+                        <TextInput style={styles.input} defaultValue={this.state.taskDetail.time} 
                         onChangeText={value => {
                             this.state.taskTimeInput=value
                         }}/>
                     </View>
                     <View style={styles.priority}>
                         <Text style={styles.label}>Priority:</Text>
-                        <TextInput style={styles.input} placeholder="normal" 
+                        <TextInput style={styles.input} defaultValue="normal" 
                         onChangeText={value => {
                             this.state.taskPriorityInput=value
                         }}
@@ -52,7 +52,7 @@ class TaskUpdate extends React.Component {
                     </View>
                     <View style={styles.textSection}>
                         <Text style={styles.label}>Task Status: </Text>
-                        <TextInput style={styles.input} placeholder={this.state.taskDetail.status} 
+                        <TextInput style={styles.input} defaultValue={this.state.taskDetail.status} 
                         onChangeText={value => {
                             this.state.taskStatusInput=value
                         }}
