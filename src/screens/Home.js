@@ -161,6 +161,10 @@ function App() {
             name="AddClinicalRecords" 
             component={AddClinicalRecords} 
             options={{ title: 'Add New Clinical Records' }}/>
+        <Stack.Screen 
+            name="UpdateClinicalRecords" 
+            component={UpdateClinicalRecords} 
+            options={{ title: 'Update Clinical Records' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

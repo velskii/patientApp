@@ -25,7 +25,7 @@ class ClinicalRecords extends React.Component {
                         </View>
                         <View style={styles.btnAddClinical}>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate('AddClinicalRecords', {
+                                onPress={() => navigation.navigate('UpdateClinicalRecords', {
                                     patientId: 86,
                                 })}>
                                     <Text style={styles.newRecords}>New Records</Text>
@@ -39,24 +39,8 @@ class ClinicalRecords extends React.Component {
             }
             return (
                 <View style={styles.container}>
-                    <View style={styles.btnAddClinical}>
-                        <TouchableOpacity
-                                onPress={() => navigation.navigate('AddClinicalRecords', {
-                                    patientId: 86,
-                                })}>
-                                    <Text style={styles.newRecords}>Update Records</Text>
-                        </TouchableOpacity>
-                    </View>
+                    
                     <View style={styles.tableHeader}>
-                    {/* <View style={styles.taskId}>
-                            <Text>Medical Name</Text>
-                        </View>
-                        <View style={styles.time}>
-                            <Text>Time</Text>
-                        </View>
-                        <View style={styles.taskName}>
-                            <Text>doses</Text>
-                        </View> */}
                     </View>
                     <View style={styles.list}>                    
                         <FlatList
@@ -65,19 +49,27 @@ class ClinicalRecords extends React.Component {
                             <View style={styles.info}>
                                 <View style={styles.footer}>
                                     <Text style={styles.taskNameDisplay}>Blood Pressure: </Text>
-                                    <Text>{item.bloodPressure}</Text>
+                                    <Text style={styles.valueDisplay}>{item.bloodPressure}</Text>
                                 </View>
                                 <View style={styles.footer}>
                                     <Text style={styles.taskNameDisplay}>Respiratory Rate: </Text>
-                                    <Text>{item.respiratoryRate}</Text>
+                                    <Text style={styles.valueDisplay}>{item.respiratoryRate}</Text>
                                 </View>
                                 <View style={styles.footer}>
                                     <Text style={styles.taskNameDisplay}>Blood Oxygen level: </Text>
-                                    <Text>{item.bloodOxygenLevel}</Text>
+                                    <Text style={styles.valueDisplay}>{item.bloodOxygenLevel}</Text>
                                 </View>
                                 <View style={styles.footer}>
                                     <Text style={styles.taskNameDisplay}>Heartbeat Rate: </Text>
-                                    <Text>{item.heartBeatRate}</Text>
+                                    <Text style={styles.valueDisplay}>{item.heartBeatRate}</Text>
+                                </View>
+                                <View style={styles.btnAddClinical}>
+                                    <TouchableOpacity
+                                            onPress={() => navigation.navigate('UpdateClinicalRecords', {
+                                                patientId: item.patientId,
+                                            })}>
+                                                <Text style={styles.newRecords}>Update Records</Text>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                             }
@@ -99,7 +91,7 @@ const styles = StyleSheet.create({
         height: 50,
         textAlign: "right",
         marginRight: 10,
-        marginTop: 10
+        marginTop: 30
     },
     newRecords: {
         color: "blue",
@@ -124,31 +116,26 @@ const styles = StyleSheet.create({
         backgroundColor: 'skyblue',
         width: '25%',
     },
-    list: {
-        // backgroundColor: '#ddd',
-        // flex: 97,
-        // width: "100%",
-        // justifyContent: "center",
-        // alignItems: "center",
-    },
     info: {
         padding: 10,
         backgroundColor: "#fff",
-        borderColor: "#bbb",
-        borderWidth: 1,
-        borderTopWidth: 0,
+        borderColor: "#bbb"
     },
     footer: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
         alignItems: "center",
         marginTop: 15,
+        marginLeft: 30
     },
     taskNameDisplay:{
         fontSize: 16,
         fontWeight: "bold",
-        marginBottom: 5,
-        // width: '25%',
+        marginBottom: 5
+    },
+    valueDisplay: {
+        flex: 1,
+        textAlign: "right",
+        marginRight: 30
     },
     notification: {
         fontSize: 14,

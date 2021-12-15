@@ -142,6 +142,26 @@ export default {
             console.error(error);
         }
     },
+    async updateClinicalRecords(patientId, clinicalRecordsId, bloodPressure, respiratoryRate, bloodOxygenLevel, heartBeatRate){
+        try {
+            const requestOptions = {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    'bloodPressure': bloodPressure,
+                    'respiratoryRate': respiratoryRate,
+                    'bloodOxygenLevel': bloodOxygenLevel,
+                    'heartBeatRate': heartBeatRate
+                })
+            };
+            const response = await fetch(apiHost+ '/patients/' + patientId +'/clinical-records/' + clinicalRecordsId, requestOptions);
+            const data = await response.json();
+
+            return data;
+          } catch (error) {
+            console.error(error);
+        }
+    },
     async addPatient(firstName, lastName, age, gender, healthInsuranceNo, phoneNo, email){
         try {
             const requestOptions = {
