@@ -71,7 +71,7 @@ class TaskUpdate extends React.Component {
                                     "",
                                     [{ text: "OK", onPress:{}}]
                                 )
-                                navigation.navigate('TaskList', {
+                                navigation.push('TaskList', {
                                 userId: route.params?.userId,
                                 sth: "nothing"
                                 })
