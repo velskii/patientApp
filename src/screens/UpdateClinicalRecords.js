@@ -13,8 +13,12 @@ class UpdateClinicalRecords extends React.Component {
     async componentDidMount() {
         const { route } = this.props;
         const clinicalRecords = await ajax.fetchClinicalRecords(route.params?.patientId);
-        
+
         this.setState({ clinicalRecords });
+        this.setState({ bloodPressure: clinicalRecords[0].bloodPressure});
+        this.setState({ respiratoryRate: clinicalRecords[0].respiratoryRate});
+        this.setState({ bloodOxygenLevel: clinicalRecords[0].bloodOxygenLevel});
+        this.setState({ heartBeatRate: clinicalRecords[0].heartBeatRate});
     }
     render () {
         const { navigation } = this.props;
@@ -30,8 +34,7 @@ class UpdateClinicalRecords extends React.Component {
                                 <Text style={styles.label}>Blood Pressure: </Text>
                                 <TextInput 
                                     style={styles.input}
-                                    placeholder={item.bloodPressure}
-                                    value={this.state.clinicalRecords.bloodPressure}
+                                    value={this.state.bloodPressure}
                                     onChangeText={(input) => {
                                         this.setState({bloodPressure: input});
                                         
@@ -42,7 +45,6 @@ class UpdateClinicalRecords extends React.Component {
                                 <Text style={styles.label}>Respiratory Rate: </Text>
                                 <TextInput 
                                     style={styles.input}
-                                    placeholder={item.respiratoryRate}
                                     value={this.state.respiratoryRate}
                                     onChangeText={(input) => {
                                         this.setState({respiratoryRate: input});
@@ -54,7 +56,6 @@ class UpdateClinicalRecords extends React.Component {
                                 <Text style={styles.label}>Blood Oxygen level: </Text>
                                 <TextInput 
                                     style={styles.input}
-                                    placeholder={item.bloodOxygenLevel}
                                     value={this.state.bloodOxygenLevel}
                                     onChangeText={(input) => {
                                         this.setState({bloodOxygenLevel: input});
@@ -65,7 +66,6 @@ class UpdateClinicalRecords extends React.Component {
                                 <Text style={styles.label}>Heartbeat Rate: </Text>
                                 <TextInput 
                                     style={styles.input}
-                                    placeholder={item.heartBeatRate}
                                     value={this.state.heartBeatRate}
                                     onChangeText={(input) => {
                                         this.setState({heartBeatRate: input});
@@ -74,6 +74,7 @@ class UpdateClinicalRecords extends React.Component {
                             </View>
                             <View>
                                 <Button title="Update" onPress={async() => {
+                                                           
                                         const result = await ajax.updateClinicalRecords(item.patientId, item._id, 
                                             this.state.bloodPressure, this.state.respiratoryRate, this.state.bloodOxygenLevel, this.state.heartBeatRate);
                                         if (result) {
@@ -84,14 +85,10 @@ class UpdateClinicalRecords extends React.Component {
                                                 { text: "OK", ßonPress: () => console.log("OK Pressed") }
                                                 ]
                                             )
-                                            this.props.navigation.reset({
-                                                index: 0,
-                                                routes: [{ name: "ClinicalRecords", params: {"patientId": item.patientId} }]
-                                            });
-                                            // navigation.navigate('ClinicalRecords', {
-                                            //     patientId: item.patientId,
-                                            //     sth: "nothing"
-                                            // })
+                                            
+                                            this.props.navigation.push('ClinicalRecords', {
+                                                patientId: item.patientId,
+                                            })
                                         }       
                                     }}
                                 />
