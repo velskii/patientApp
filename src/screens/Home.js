@@ -14,6 +14,7 @@ import TaskDetail from './TaskDetail';
 import ClinicalRecords from './ClinicalRecords';
 import AddClinicalRecords from './AddClinicalRecords';
 import TaskUpdate from './TaskUpdate';
+import UpdateClinicalRecords from './UpdateClinicalRecords';
 
 
 function Home({ navigation, route }) {
